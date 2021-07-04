@@ -4,3 +4,5 @@ project(pipex C)
 set(CMAKE_C_STANDARD 99)
 
 add_executable(pipex main.c)
+
+target_link_libraries(pipex "/Users/cerebus/projects/clion_cub3d2/libft.a")
