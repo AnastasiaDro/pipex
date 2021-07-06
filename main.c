@@ -14,10 +14,9 @@ int main(int argc, char *argv[], char **envp)
     //fork();
     command1 = argv[2];
     pathList = pipexSplit(findPath(envp), ':'); //разбили на папки, где нужно искать бинарники
-
     execArr = getExecArr(command1, pathList, argv[1]);
 
     execve(execArr[0], execArr, envp);
 
-    return 0;
+    return (0);
 }
