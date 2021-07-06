@@ -22,16 +22,11 @@ char *findCommand(char **pathList, char *command)
     {
         tmp = command_path;
         command_path = ft_strjoin(pathList[i], command);
-        printf("errno = %d\n", errno);
         if(!access (command_path, 0))
-        {
-      //      execArr[0] = command_path;
             return (command_path);
-        }
         free(tmp);
         i++;
     }
-
     return (command_path);
 }
 
