@@ -3,6 +3,7 @@ project(pipex C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(pipex main.c findPath.c redirectOut.c findCommand.c pipexSplit.c getExecArr.c)
+add_executable(pipex main.c findPath.c redirectOut.c findCommand.c pipexSplit.c getBinaryName.c execArrSplit.c
+                getExecArr.c)
 
 target_link_libraries(pipex "/Users/cerebus/projects/clion_cub3d2/libft.a")

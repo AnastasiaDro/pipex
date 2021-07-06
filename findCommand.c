@@ -16,9 +16,7 @@ char *findCommand(char **pathList, char *command)
 
     i = 0;
     command_path = NULL;
-    //execArr = getExecArr(&command);
-    getExecArr(&command);
-    //*flags = ft_split(flags_tmp, ' ');
+    getBinaryName(&command);
 
     while(pathList[i])
     {

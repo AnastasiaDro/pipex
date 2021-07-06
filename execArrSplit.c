@@ -50,7 +50,6 @@ static char	**ft_fill_res(char **res, char const *s, char c, int words_num)
 	int	start;
 	int	end;
 	int	arr_num;
-	int s_len;
 
 	i = 0;
 	arr_num = 0;
@@ -62,11 +61,7 @@ static char	**ft_fill_res(char **res, char const *s, char c, int words_num)
 		while (s[i] != c && s[i] != '\0')
 			i++;
 		end = i - 1;
-		s_len = end - start + 3;
-		res[arr_num] = malloc((s_len) * sizeof(char));
-		ft_memcpy(res[arr_num], &s[start], s_len - 1);
-		res[arr_num][s_len - 1] = '\0';
-		res[arr_num][s_len - 2] = '/';
+		res[arr_num] = ft_substr(s, start, end - start + 1);
 		if (!(res[arr_num]))
 			return (ft_free(arr_num, res));
 		arr_num++;
@@ -75,7 +70,7 @@ static char	**ft_fill_res(char **res, char const *s, char c, int words_num)
 	return (res);
 }
 
-char		**pipexSplit(char const *s, char c)
+char		**execArrSplit(char const *s, char c, int *arrLen)
 {
 	int		words_num;
 	char	**res;
@@ -83,8 +78,9 @@ char		**pipexSplit(char const *s, char c)
 	if (!s)
 		return (NULL);
 	words_num = ft_count_words(s, c);
-	res = (char **)malloc((words_num + 1) * sizeof(char *));
-	if (!res)
-		return (NULL);
+
+	res = (char **)malloc((words_num + 2) * sizeof(char *));
+	res[words_num + 1] = NULL;
+    *arrLen = words_num + 1;
 	return (ft_fill_res(res, s, c, words_num));
 }
