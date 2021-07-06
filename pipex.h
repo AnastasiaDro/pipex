@@ -13,9 +13,9 @@ int redirectOut(char **filename, char *command, char *content);
 
 char		**pipexSplit(char const *s, char c);
 
-char *getCommandFlags(char **command);
+char **getExecArr(char **command);
 
-char *findCommand(char **pathList, char *command, char ***flags);
+char *findCommand(char **pathList, char *command);
 
 void execute(char *file1, char command1, char *command2, char file2);
 
