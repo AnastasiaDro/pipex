@@ -80,7 +80,7 @@ char		**execArrSplit(char const *s, char c, int *arrLen)
 	words_num = ft_count_words(s, c);
 
 	res = (char **)malloc((words_num + 2) * sizeof(char *));
-	res[words_num + 1] = NULL;
-    *arrLen = words_num + 1;
+	res[words_num] = NULL;
+    *arrLen = words_num;
 	return (ft_fill_res(res, s, c, words_num));
 }

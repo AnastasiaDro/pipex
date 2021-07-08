@@ -19,7 +19,7 @@ char *findCommand(char **pathList, char *command);
 
 char		**execArrSplit(char const *s, char c, int *arrLen);
 
-char **getExecArr(char *command, char **pathList, char *filename);
+char **getExecArr(char *command, char **pathList);
 
 void execute(char *file1, char command1, char *command2, char file2);
 
