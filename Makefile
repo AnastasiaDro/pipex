@@ -1,5 +1,6 @@
 NAME	=	pipex
-SRC		=	
+SRC		=	main.c execArrSplit.c findCommand.c findPath.c getBinaryName.c getExecArr.c \
+			pipexSplit.c
 CFLAGS	= 	-Wall -Wextra -Werror
 LIBFT	= 	libft/libft.a
 
@@ -10,17 +11,17 @@ OBJS	= 	$(SRC:.c=.o)
 
 $(NAME):	$(OBJS)
 			@make bonus -C libft
-			gcc $(SRC) -L . $(LIBFT) $(LIBMX) -framework OpenGL -framework AppKit -o $(NAME)
+			@gcc $(SRC) -L . $(LIBFT) $(LIBMX) -framework OpenGL -framework AppKit -o $(NAME)
 
 
 all:		$(NAME)
 
 clean:
-			rm -f $(OBJS)
+			@rm -f $(OBJS)
 			@make bfclean -C libft
 
 fclean:		clean
-			rm -f $(NAME)
+			@rm -f $(NAME)
 			@make bfclean -C libft
 
 re:			fclean all
