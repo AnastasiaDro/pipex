@@ -12,6 +12,5 @@ char **getExecArr(char *command, char **pathList)
     execArr = execArrSplit(command, ' ', &arrLen);
     char *path_command = findCommand(pathList, command); //нашли путь к команде
     execArr[0] = path_command;
-  //  execArr[arrLen-1] = filename;
     return (execArr);
 }
