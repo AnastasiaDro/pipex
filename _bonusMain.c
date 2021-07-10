@@ -41,6 +41,7 @@ int main(int argc, char *argv[], char **envp)
 
 
 
+
     //пайп
     if (pipe(pfd) == -1)
         return (1);
