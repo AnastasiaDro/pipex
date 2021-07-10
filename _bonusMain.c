@@ -13,7 +13,7 @@ int main(int argc, char *argv[], char **envp)
     char **execArr;
     int pid1;
     int pid2;
-    int pfd[2];
+    int **fd;
     int fileFd;
 
     int argv_index = 0;
@@ -27,11 +27,12 @@ int main(int argc, char *argv[], char **envp)
     //как посчитать пайпы?
 
     argv_index = 2; //0 - это имя, 1 - это файл, 2 - первая команда
-    int **fd = malloc((argc - 2) * sizeof (int *));
+    fd = malloc((argc - 2) * sizeof (int *));
     int commands_num = 0;
     while(commands_num < argc - 2)
     {
         fd[commands_num] = malloc(2 * sizeof (int));
+        pipe(fd[commands_num]); //сразу сделали пайпы
         commands_num++;
     }
     commands_num--;
@@ -41,13 +42,13 @@ int main(int argc, char *argv[], char **envp)
 
 
 
-
-    //пайп
-    if (pipe(pfd) == -1)
-        return (1);
-
-    if (pipe(pfd) == -1)
-        return (1);
+//
+//    //пайп
+//    if (pipe(fd) == -1)
+//        return (1);
+//
+//    if (pipe(fd) == -1)
+//        return (1);
 
 
 
@@ -60,15 +61,16 @@ int main(int argc, char *argv[], char **envp)
     if (pid1 == 0)
     {
         fileFd = open(argv[1], O_RDWR); //открываем файл, из которого берём данные
-        dup2(pfd[1], STDOUT_FILENO);
+        dup2(fd[1], STDOUT_FILENO);
         dup2(fileFd, STDIN_FILENO);
-        close(pfd[0]);
-        close(pfd[1]);
+        close(fd[0]);
+        close(fd[1]);
         close(fileFd);
         command = argv[2];
         execArr = getExecArr(command, pathList);
         execve(execArr[0], execArr, envp); //вы
     }
+
 
     pid2 = fork();
     if (pid2 < 0)
