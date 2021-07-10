@@ -9,21 +9,49 @@ int main(int argc, char *argv[], char **envp)
 {
 
     char **pathList;
-    char **execArr;
     char *command;
+    char **execArr;
     int pid1;
     int pid2;
     int pfd[2];
     int fileFd;
 
+    int argv_index = 0;
 
-    if(argc != 5)
+    if(argc < 5)
         return ((int)write(1, ARGNUM_ERR, (int)ft_strlen(ARGNUM_ERR)));
     pathList = pipexSplit(findPath(envp), ':');
+
+
+    //сперва проверить на доступ файлы
+    //как посчитать пайпы?
+
+    argv_index = 2; //0 - это имя, 1 - это файл, 2 - первая команда
+    int **fd = malloc((argc - 2) * sizeof (int *));
+    int commands_num = 0;
+    while(commands_num < argc - 2)
+    {
+        fd[commands_num] = malloc(2 * sizeof (int));
+        commands_num++;
+    }
+    commands_num--;
+    printf("намаллочили %d команд\n", (commands_num)); //работает
+
+
+
+
 
     //пайп
     if (pipe(pfd) == -1)
         return (1);
+
+    if (pipe(pfd) == -1)
+        return (1);
+
+
+
+
+
     pid1 = fork();
     if (pid1 < 0)
         return (2);
