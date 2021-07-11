@@ -2,7 +2,7 @@ NAME	=	pipex
 SRC		=	main.c execArrSplit.c findCommand.c findPath.c getBinaryName.c getExecArr.c \
 			pipexSplit.c
 BONUS	= 	_bonusMain.c execArrSplit.c findCommand.c findPath.c getBinaryName.c \
-			getExecArr.c pipexSplit.c
+			getExecArr.c pipexSplit.c _bonus_closeLazyDescs.c
 BNAME	= 	bonus_pipex
 CFLAGS	= 	-Wall -Wextra -Werror
 LIBFT	= 	libft/libft.a
