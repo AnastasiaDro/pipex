@@ -34,7 +34,11 @@ int main(int argc, char *argv[], char **envp)
     //обработка первой команды
     if (pid == 0)
     {
-        fileFd = open(argv[1], O_RDWR); //открываем файл, из которого берём данные
+        fileFd = open(argv[1], O_RDONLY); //открываем файл, из которого берём данные
+        if (fileFd == -1)
+        {
+            printError(FILE_ERR, argv[1]);
+        }
         dup2(fd[1][1], STDOUT_FILENO);
         dup2(fileFd, STDIN_FILENO);
         close(fileFd);
@@ -55,7 +59,11 @@ int main(int argc, char *argv[], char **envp)
     pid = fork();
     if (pid == 0)
     {
-        fileFd = open(argv[argc - 1], O_RDWR); //открываем файл, из которого берём данные
+        fileFd = open(argv[argc - 1], O_WRONLY); //открываем файл, из которого берём данные
+        if (fileFd == -1)
+        {
+            printError(FILE_ERR, argv[argc - 1]);
+        }
         dup2(fd[commands_num - 1][0], STDIN_FILENO);
         dup2(fileFd, STDOUT_FILENO);
         close(fileFd);

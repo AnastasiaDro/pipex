@@ -31,6 +31,10 @@ int main(int argc, char *argv[], char **envp)
     if (pid1 == 0)
     {
         fileFd = open(argv[1], O_RDWR); //открываем файл, из которого берём данные
+        if (fileFd == -1)
+        {
+            printError(FILE_ERR, argv[1]);
+        }
         dup2(pfd[1], STDOUT_FILENO);
         dup2(fileFd, STDIN_FILENO);
         close(pfd[0]);
@@ -48,6 +52,10 @@ int main(int argc, char *argv[], char **envp)
     if (pid2 == 0 )
     {
         fileFd = open(argv[4], O_WRONLY);
+        if (fileFd == -1)
+        {
+            printError(FILE_ERR, argv[4]);
+        }
         dup2(pfd[0], STDIN_FILENO);
         close(pfd[0]);
         close(pfd[1]);
