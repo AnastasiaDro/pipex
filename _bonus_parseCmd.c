@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include <printf.h>
 #include "_bonus.h"
 #include "pipex.h"
 
@@ -12,6 +13,7 @@ int _bonus_parseCmd(int ***fd, int current_index, int commands_num, char *argv[]
     pid = fork();
     if (pid == 0)
     {
+        printf("current_index = %d\n", current_index);
         tmp = *fd;
         dup2(tmp[current_index][0], STDIN_FILENO); //перенаправили ввод
         dup2(tmp[current_index + 1][1], STDOUT_FILENO); //перенаправили вывод

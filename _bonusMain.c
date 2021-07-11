@@ -55,7 +55,9 @@ int main(int argc, char *argv[], char **envp)
     int j = 1; //счетчик команд
     while(j < commands_num - 1)
     {
+       // printf("j = %d\n", j);
         _bonus_parseCmd(&fd, j, commands_num, argv, pathList);
+        printf("j = %d\n", j);
         j++;
     }
 
