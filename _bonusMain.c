@@ -38,6 +38,8 @@ int main(int argc, char *argv[], char **envp)
         if (fileFd == -1)
         {
             printError(FILE_ERR, argv[1]);
+            _bonus_closeAllFds(&fd, commands_num);
+            return 9;
         }
         dup2(fd[1][1], STDOUT_FILENO);
         dup2(fileFd, STDIN_FILENO);

@@ -34,6 +34,7 @@ int main(int argc, char *argv[], char **envp)
         if (fileFd == -1)
         {
             printError(FILE_ERR, argv[1]);
+            return 9;
         }
         dup2(pfd[1], STDOUT_FILENO);
         dup2(fileFd, STDIN_FILENO);
@@ -55,6 +56,7 @@ int main(int argc, char *argv[], char **envp)
         if (fileFd == -1)
         {
             printError(FILE_ERR, argv[4]);
+            return 9;
         }
         dup2(pfd[0], STDIN_FILENO);
         close(pfd[0]);
