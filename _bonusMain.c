@@ -53,13 +53,14 @@ int main(int argc, char *argv[], char **envp)
     if (pid1 == 0)
     {
         fileFd = open(argv[1], O_RDWR); //открываем файл, из которого берём данные
-        dup2(fd[0][1], STDOUT_FILENO);
+        dup2(fd[1][1], STDOUT_FILENO);
         dup2(fileFd, STDIN_FILENO);
         write(1, "TTT\n", 4);
-        _bonus_closeLazyDescs(&fd, 0, commands_num);
+      //  _bonus_closeLazyDescs(&fd, 0, commands_num);
         write(1, "TTT\n", 4);
-        close(fd[0][0]);
+        //close(fd[0][0]);
         close(fileFd);
+        _bonus_closeAllFds(&fd, commands_num);
         command = argv[2];
         execArr = getExecArr(command, pathList);
         write(1, "UUU\n", 4);
@@ -67,38 +68,36 @@ int main(int argc, char *argv[], char **envp)
     }
 
     //обработка комманд между
-
+    int j = 1; //счетчик команд
+    while(j < commands_num - 1)
+    {
+        _bonus_parseCmd(&fd, j, commands_num, argv, pathList);
+        write(1, "1\n", 2);
+        j++;
+    }
 
 
 
     //обработка последней команды
-//    pid2 = fork();
-//    if (pid2 < 0)
-//        return (2);
-//    if (pid1 == 0)
-//    {
-//        _bonus_closeLazyDescs(&fd, commands_num);
-//        fileFd = open(argv[argc - 1], O_RDWR); //открываем файл, в который запишем данные
-//        dup2(fileFd, STDOUT_FILENO);
-//        dup2(fd[commands_num - 1][0], STDIN_FILENO);
-//        //закрываем все fd-шники
-//
-//        close(fileFd);
-//        command = argv[argc - 2];
-//        execArr = getExecArr(command, pathList);
-//        execve(execArr[0], execArr, envp); //вы
-//    }
+    pid1 = fork();
+
+    if (pid1 == 0)
+    {
+        fileFd = open(argv[argc - 1], O_RDWR); //открываем файл, из которого берём данные
+
+        printf("fd index last = %d\n", commands_num - 1);
+
+        dup2(fd[commands_num - 1][0], STDIN_FILENO);
+        dup2(fileFd, STDOUT_FILENO);
+        close(fileFd);
+        _bonus_closeAllFds(&fd, commands_num);
+        command = argv[argc - 2];
+        execArr = getExecArr(command, pathList);
+        execve(execArr[0], execArr, envp); //вы
+    }
 
 
-    //переберем команды
-    //1. берем нужные фд-шники
-    //2. меняем их на стдин и стдаут
-    // 3. закрываем лишние фд-шники
-    //4. берем данные из пайпа
-    // 5. выполняем
-
-    //закрываем все дескрипторы
-//    _bonus_closeDescs(&fd, commands_num);
+    _bonus_closeAllFds(&fd, commands_num);
     while(wait(NULL) != -1)
         wait(NULL);
 
