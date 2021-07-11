@@ -34,7 +34,7 @@ int main(int argc, char *argv[], char **envp)
     //обработка первой команды
     if (pid == 0)
     {
-        fileFd = open(argv[1], O_RDONLY); //открываем файл, из которого берём данные
+        fileFd = open(argv[1], O_RDWR); //открываем файл, из которого берём данные
         if (fileFd == -1)
         {
             printError(FILE_ERR, argv[1]);
@@ -61,7 +61,7 @@ int main(int argc, char *argv[], char **envp)
     pid = fork();
     if (pid == 0)
     {
-        fileFd = open(argv[argc - 1], O_WRONLY); //открываем файл, из которого берём данные
+        fileFd = open(argv[argc - 1], O_RDWR); //открываем файл, из которого берём данные
         if (fileFd == -1)
         {
             printError(FILE_ERR, argv[argc - 1]);
