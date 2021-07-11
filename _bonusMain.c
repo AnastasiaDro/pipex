@@ -3,8 +3,8 @@
 #include <stdlib.h>
 #include <sys/file.h>
 #include "pipex.h"
-#include "libft/libft.h"
 #include "_bonus.h"
+#include "libft/libft.h"
 
 int main(int argc, char *argv[], char **envp)
 {
@@ -15,8 +15,6 @@ int main(int argc, char *argv[], char **envp)
     int pid;
     int **fd;
     int fileFd;
-
-    //int argv_index;
 
     pathList = pipexSplit(findPath(envp), ':');
     fd = malloc((argc - 2) * sizeof (int *));
@@ -36,13 +34,18 @@ int main(int argc, char *argv[], char **envp)
     //обработка первой команды
     if (pid == 0)
     {
+        command = argv[2];
+        execArr = getExecArr(command, pathList);
+        if (execArr[0] == NULL)
+        {
+            printError(ARGNAME_ERR, command);
+            return (0);
+        }
         fileFd = open(argv[1], O_RDWR); //открываем файл, из которого берём данные
         dup2(fd[1][1], STDOUT_FILENO);
         dup2(fileFd, STDIN_FILENO);
         close(fileFd);
         _bonus_closeAllFds(&fd, commands_num);
-        command = argv[2];
-        execArr = getExecArr(command, pathList);
         execve(execArr[0], execArr, envp); //вы
     }
 

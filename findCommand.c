@@ -21,12 +21,16 @@ char *findCommand(char **pathList, char *command)
     while(pathList[i])
     {
         tmp = command_path;
+
+
+
         command_path = ft_strjoin(pathList[i], command);
         if(!access (command_path, 0))
             return (command_path);
         free(tmp);
         i++;
     }
-    return (command_path);
+
+    return (NULL);
 }
 

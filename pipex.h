@@ -5,7 +5,9 @@
 #ifndef PIPEX_H
 # define PIPEX_H
 # define ARGNUM_ERR "Invalid arguments number!\n"
+# define ARGNAME_ERR "pipex: command not found: "
 
+int printError(char *error, char *command);
 
 char    *findPath(char **envp);
 
