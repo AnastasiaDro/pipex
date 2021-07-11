@@ -1,28 +1,29 @@
 NAME	=	pipex
-SRC		=	main.c execArrSplit.c findCommand.c findPath.c getBinaryName.c getExecArr.c \
+MAIN 	= 	main.c
+SRC		=	execArrSplit.c findCommand.c findPath.c getBinaryName.c getExecArr.c \
 			pipexSplit.c
-BONUS	= 	_bonusMain.c execArrSplit.c findCommand.c findPath.c getBinaryName.c \
-			getExecArr.c pipexSplit.c _bonus_closeLazyDescs.c
+BONUS	= 	_bonusMain.c _bonus_closeAllFds.c _bonus_parseCmd.c
 BNAME	= 	bonus_pipex
 CFLAGS	= 	-Wall -Wextra -Werror
 LIBFT	= 	libft/libft.a
 
 OBJS	= 	$(SRC:.c=.o)
 BOBJS 	= 	$(BONUS:.c=.o)
+OMAIN	=	$(MAIN:.c=.o)
 
 %.o: %.c
 			@$(CC) $(CFLAGS) -c -I./libft/ $< -o $(<:.c=.o)
 
-$(NAME):	$(OBJS)
+$(NAME):	$(OMAIN) $(OBJS)
 			@make bonus -C libft
-			@gcc $(SRC) $(LIBFT) -o $(NAME)
+			@gcc $(OMAIN) $(OBJS) $(LIBFT) -o $(NAME)
 
 
 all:		$(NAME)
 
-bonus:		$(BOBJS)
+bonus:		$(OBJS) $(BOBJS)
 			@make bonus -C libft
-			@gcc $(BOBJS) $(LIBFT) -o $(BNAME)
+			@gcc $(OBJS) $(BOBJS) $(LIBFT) -o $(BNAME)
 
 clean:
 			@rm -f $(OBJS)

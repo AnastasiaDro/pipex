@@ -16,8 +16,6 @@ int main(int argc, char *argv[], char **envp)
     int **fd;
     int fileFd;
 
-    //int argv_index;
-
     pathList = pipexSplit(findPath(envp), ':');
     fd = malloc((argc - 2) * sizeof (int *));
     int commands_num = 0;
