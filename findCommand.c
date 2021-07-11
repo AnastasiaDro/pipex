@@ -4,7 +4,6 @@
 #include <unistd.h>
 #include <errno.h>
 #include <stdlib.h>
-#include <printf.h>
 #include "libft/libft.h"
 #include "pipex.h"
 
@@ -22,7 +21,7 @@ char *findCommand(char **pathList, char *command)
     {
         tmp = command_path;
         command_path = ft_strjoin(pathList[i], command);
-        if(!access (command_path, 0))
+        if(!access(command_path, 0))
             return (command_path);
         free(tmp);
         i++;

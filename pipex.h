@@ -7,7 +7,7 @@
 # define NAME "pipex: "
 # define ARGNUM_ERR "Invalid arguments number!\n"
 # define FILE_ERR "No such file or directory: "
-# define INVCOMMAND_ERR "command not found: "
+# define COMMAND_ERR "command not found: "
 
 char    *findPath(char **envp);
 

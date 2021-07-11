@@ -13,6 +13,7 @@ int main(int argc, char *argv[], char **envp)
     char *command;
     char **execArr;
     int pid;
+    int pid1;
     int **fd;
     int fileFd;
 
@@ -58,10 +59,10 @@ int main(int argc, char *argv[], char **envp)
         j++;
     }
 
-    pid = fork();
-    if (pid == 0)
+    pid1 = fork();
+    if (pid1 == 0)
     {
-        fileFd = open(argv[argc - 1], O_RDWR); //открываем файл, из которого берём данные
+        fileFd = open(argv[argc - 1], O_TRUNC | O_RDWR); //открываем файл, из которого берём данные
         if (fileFd == -1)
         {
             printError(FILE_ERR, argv[argc - 1]);
