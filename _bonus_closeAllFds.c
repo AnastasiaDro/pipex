@@ -17,4 +17,5 @@ void _bonus_closeAllFds(int ***fd, int commands_num)
         close(tmp[i][1]);
         i++;
     }
+
 }
