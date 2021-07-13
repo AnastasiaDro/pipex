@@ -13,7 +13,6 @@ int main(int argc, char *argv[], char **envp)
     char *command;
     char **execArr;
     int pid;
-    int pid1;
     int **fd;
     int fileFd;
 
@@ -35,6 +34,8 @@ int main(int argc, char *argv[], char **envp)
     //обработка первой команды
     if (pid == 0)
     {
+        command = argv[2];
+        execArr = getExecArr(command, pathList);
         fileFd = open(argv[1], O_RDWR); //открываем файл, из которого берём данные
         if (fileFd == -1)
         {
@@ -46,24 +47,21 @@ int main(int argc, char *argv[], char **envp)
         dup2(fileFd, STDIN_FILENO);
         close(fileFd);
         _bonus_closeAllFds(&fd, commands_num);
-        command = argv[2];
-        execArr = getExecArr(command, pathList);
-        execve(execArr[0], execArr, envp); //вы
+        execve(execArr[0], execArr, envp);
     }
-
-    //обработка комманд между
-    int j = 1; //счетчик команд
+    int j = 1;
     while(j < commands_num - 1)
     {
-       // printf("j = %d\n", j);
-        _bonus_parseCmd(&fd, j, commands_num, argv, pathList);
-        printf("j = %d\n", j);
+        pid = fork();
+        if (pid == 0)
+            _bonus_parseCmd(&fd, j, commands_num, argv, pathList);
         j++;
     }
-
-    pid1 = fork();
-    if (pid1 == 0)
+    pid = fork();
+    if (pid == 0)
     {
+        command = argv[argc - 2];
+        execArr = getExecArr(command, pathList);
         fileFd = open(argv[argc - 1], O_TRUNC | O_RDWR); //открываем файл, из которого берём данные
         if (fileFd == -1)
         {
@@ -73,9 +71,7 @@ int main(int argc, char *argv[], char **envp)
         dup2(fileFd, STDOUT_FILENO);
         close(fileFd);
         _bonus_closeAllFds(&fd, commands_num);
-        command = argv[argc - 2];
-        execArr = getExecArr(command, pathList);
-        execve(execArr[0], execArr, envp); //вы
+        execve(execArr[0], execArr, envp);
     }
     _bonus_closeAllFds(&fd, commands_num);
     while(1)

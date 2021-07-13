@@ -2,7 +2,6 @@
 // Created by Cesar Erebus on 7/6/21.
 //
 #include <unistd.h>
-#include <errno.h>
 #include <stdlib.h>
 #include "libft/libft.h"
 #include "pipex.h"
@@ -26,6 +25,6 @@ char *findCommand(char **pathList, char *command)
         free(tmp);
         i++;
     }
-    return (command_path);
+    return (NULL);
 }
 

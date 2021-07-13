@@ -10,10 +10,13 @@ char **getExecArr(char *command, char **pathList)
     int arrLen;
     char **execArr;
 
-
     execArr = execArrSplit(command, ' ', &arrLen);
     char *path_command = findCommand(pathList, command); //нашли путь к команде
-    //printf("execArr[0] = %s\n", execArr[0]);
+    if (path_command == NULL)
+    {
+        printError(COMMAND_ERR, command);
+        return (NULL);
+    }
     execArr[0] = path_command;
     return (execArr);
 }
