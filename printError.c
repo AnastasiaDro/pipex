@@ -9,9 +9,9 @@ int printError(char *error, char *command)
 {
     int res;
 
-    res = (int)(write(1, NAME, ft_strlen(NAME)) +
-            write(1, error, ft_strlen(error))  +
-            write(1, command, ft_strlen(command)) +
-            write(1, "\n", 1));
+    res = (int)(write(2, NAME, ft_strlen(NAME)) +
+            write(2, error, ft_strlen(error))  +
+            write(2, command, ft_strlen(command)) +
+            write(2, "\n", 1));
     return (res);
 }

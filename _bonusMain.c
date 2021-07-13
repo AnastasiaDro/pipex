@@ -30,21 +30,13 @@ int main(int argc, char *argv[], char **envp)
     //обработка первой команды
     parseFirstCommand(argv, pathList, fd, commands_num);
     _bonus_parseMiddleCommands(commands_num, fd, argv, pathList);
-//    int j = 1;
-//    while(j < commands_num - 1)
-//    {
-//        pid = fork();
-//        if (pid == 0)
-//            _bonus_parseCmd(&fd, j, commands_num, argv, pathList);
-//        j++;
-//    }
 
     pid = fork();
     if (pid == 0)
     {
         command = argv[argc - 2];
         execArr = getExecArr(command, pathList);
-        fileFd = open(argv[argc - 1], O_TRUNC | O_RDWR); //открываем файл, из которого берём данные
+        fileFd = open(argv[argc - 1], O_TRUNC | O_RDWR | O_CREAT); //открываем файл, из которого берём данные
         if (fileFd == -1)
         {
             printError(FILE_ERR, argv[argc - 1]);

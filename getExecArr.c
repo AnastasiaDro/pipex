@@ -3,6 +3,8 @@
 //
 
 #include <printf.h>
+#include <string.h>
+#include <errno.h>
 #include "pipex.h"
 
 char **getExecArr(char *command, char **pathList)
@@ -15,6 +17,8 @@ char **getExecArr(char *command, char **pathList)
     if (path_command == NULL)
     {
         printError(COMMAND_ERR, command);
+        perror("GGGGGGGGG");
+      //  printf("%s\n", strerror(errno));
         return (NULL);
     }
     execArr[0] = path_command;

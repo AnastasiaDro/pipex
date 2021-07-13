@@ -6,6 +6,9 @@
 #include <sys/fcntl.h>
 #include "pipex.h"
 #include "_bonus.h"
+#include <errno.h>
+#include <printf.h>
+#include <string.h>
 
 int parseFirstCommand(char *argv[], char **pathList, int **fd, int commands_num)
 {
@@ -22,6 +25,8 @@ int parseFirstCommand(char *argv[], char **pathList, int **fd, int commands_num)
         command = argv[2];
         execArr = getExecArr(command, pathList);
         fileFd = open(argv[1], O_RDWR); //открываем файл, из которого берём данные
+
+
         if (fileFd == -1)
         {
             printError(FILE_ERR, argv[1]);
