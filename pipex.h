@@ -1,6 +1,3 @@
-//
-// Created by Cesar Erebus on 7/6/21.
-//
 
 #ifndef PIPEX_H
 # define PIPEX_H
@@ -21,7 +18,11 @@ char    **execArrSplit(char const *s, char c, int *arrLen);
 
 char    **getExecArr(char *command, char **pathList);
 
-int printError(char *error, char *command);
+int     printError(char *error, char *command);
+
+void    waitChildren(void);
+
+int parseFirstCommand(char *argv[], char **pathList, int **fd, int commands_num);
 
 
-#endif //PIPEX_PIPEX_H
+#endif
