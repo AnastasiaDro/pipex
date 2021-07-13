@@ -29,14 +29,15 @@ int main(int argc, char *argv[], char **envp)
 
     //обработка первой команды
     parseFirstCommand(argv, pathList, fd, commands_num);
-    int j = 1;
-    while(j < commands_num - 1)
-    {
-        pid = fork();
-        if (pid == 0)
-            _bonus_parseCmd(&fd, j, commands_num, argv, pathList);
-        j++;
-    }
+    _bonus_parseMiddleCommands(commands_num, fd, argv, pathList);
+//    int j = 1;
+//    while(j < commands_num - 1)
+//    {
+//        pid = fork();
+//        if (pid == 0)
+//            _bonus_parseCmd(&fd, j, commands_num, argv, pathList);
+//        j++;
+//    }
 
     pid = fork();
     if (pid == 0)
