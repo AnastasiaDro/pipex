@@ -29,7 +29,7 @@ int parseFirstCommand(char *argv[], char **pathList, int **fd, int commands_num)
 
         if (fileFd == -1)
         {
-            printError(FILE_ERR, argv[1]);
+            printError(FILE_ERR, argv[1], ENOENT);
             _bonus_closeAllFds(&fd, commands_num);
             return 9;
         }
