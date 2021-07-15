@@ -17,6 +17,11 @@ int main(int argc, char *argv[], char **envp)
         return (1);
     }
     pathList = pipexSplit(findPath(envp), ':');
+    if (!ft_strcmp("here_doc", argv[1]))
+    {
+        _bonusParseHereDoc(argv, pathList, argc);
+        exit(0);
+    }
     fd = malloc((argc - 2) * sizeof (int *));
     commands_num = 0;
     while(commands_num < argc - 2)

@@ -18,7 +18,6 @@ char    **execArrSplit(char const *s, char c, int *arrLen);
 
 char    **getExecArr(char *command, char **pathList);
 
-//int printError(char *error, char *command, int error_code);
 
 void printError(char *command, int flag);
 

@@ -25,8 +25,6 @@ int parseFirstCommand(char *argv[], char **pathList, int **fd, int commands_num)
         command = argv[2];
         execArr = getExecArr(command, pathList);
         fileFd = open(argv[1], O_RDWR); //открываем файл, из которого берём данные
-
-
         if (fileFd == -1)
         {
             printError(argv[1], 0);
