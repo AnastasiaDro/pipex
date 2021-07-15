@@ -33,8 +33,8 @@ char	*_bonusThreeStr_join(char const *s1, char const *s2, char const *s3)
     if (!newstr)
         return (NULL);
     src_len = ft_strlcpy(newstr, s1, new_s_flen);
-    src_len = ft_strlcpy(&newstr[src_len], s2, new_s_flen - src_len);
-    src_len = ft_strlcpy(&newstr[src_len], s2, new_s_flen - src_len);
+    src_len = ft_strlcpy(&newstr[src_len], s2, new_s_flen);
+    src_len = ft_strlcpy(&newstr[src_len], s3, new_s_flen);
     newstr[new_s_flen - 1] = '\0';
     return (newstr);
 }

@@ -21,7 +21,7 @@ int parseLastCommand(char *argv[], char **pathList, int **fd, int commands_num, 
             fileFd = open(argv[argc - 1], O_CREAT | O_RDWR, 0644);
         if (fileFd == -1)
         {
-            printError(FILE_ERR, argv[argc - 1], ENOENT);
+            printError(argv[argc - 1], 0);
         }
         dup2(fd[commands_num - 1][0], STDIN_FILENO);
         dup2(fileFd, STDOUT_FILENO);

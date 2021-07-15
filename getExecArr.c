@@ -16,7 +16,7 @@ char **getExecArr(char *command, char **pathList)
     char *path_command = findCommand(pathList, command); //нашли путь к команде
     if (path_command == NULL)
     {
-        printError(COMMAND_ERR, command, 127);
+        printError(command, 1);
       //  printf("%s\n", strerror(errno));
         return (NULL);
     }
