@@ -20,8 +20,6 @@ int _bonusParseHereDoc(char **argv, char **pathList, int argc)
     fd = malloc(2 * sizeof (int));
     pipe(fd);
 
-
-
     tmpFd = open("tmpFile", O_CREAT | O_RDWR, 0644);
     write(1, "> ", 2);
     get_next_line(STDIN_FILENO, &line);
@@ -46,6 +44,7 @@ int _bonusParseHereDoc(char **argv, char **pathList, int argc)
         close(tmpFd);
         close(fd[0]);
         close(fd[1]);
+        free(fd);
         execve(execArr[0], execArr, NULL);
     }
     pid = fork();
@@ -64,6 +63,7 @@ int _bonusParseHereDoc(char **argv, char **pathList, int argc)
         close(fd[1]);
         close(fd[0]);
         close(fileFd);
+        free(fd);
         execve(execArr[0], execArr, NULL);
     }
     close(fd[0]);
