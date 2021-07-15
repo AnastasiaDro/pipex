@@ -1,7 +1,5 @@
-#include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include <sys/file.h>
 #include "pipex.h"
 #include "libft/libft.h"
 #include "_bonus.h"
@@ -24,7 +22,7 @@ int main(int argc, char *argv[], char **envp)
     while(commands_num < argc - 2)
     {
         fd[commands_num] = malloc(2 * sizeof (int));
-        pipe(fd[commands_num]); //сразу сделали пайпы
+        pipe(fd[commands_num]);
         commands_num++;
     }
     commands_num--;

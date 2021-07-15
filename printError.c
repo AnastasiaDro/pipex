@@ -26,5 +26,4 @@ void printError(char *command, int flag)
         write(2, prefix, ft_strlen(prefix));
         write(2, "\n", 1);
     }
-
 }
