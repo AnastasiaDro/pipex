@@ -10,24 +10,22 @@
 int  _bonusGetTmpFile( char *argv[])
 {
     char *line;
-    char *str;
     int tFileFd;
+    char *tmp;
 
-    line = "";
-    str = malloc(1 * sizeof (char));
-
-    str[0] = '\0';
+    line = NULL;
     tFileFd = open("tmpFile", O_CREAT | O_RDWR, 0644);
     write(1, "> ", 2);
     get_next_line(STDIN_FILENO, &line);
-   // write(tFileFd, line, ft_strlen(line));
     while (ft_strcmp(line, argv[2]))
     {
-        //write(1, "> ", 2);
+        tmp = line;
         write(tFileFd, line, ft_strlen(line));
         write(tFileFd, "\n", 1);
         write(1, "> ", 2);
         get_next_line(STDIN_FILENO, &line);
+        free(tmp);
     }
-    return tFileFd;
+    free(line);
+    return (tFileFd);
 }

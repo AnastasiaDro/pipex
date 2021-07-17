@@ -20,9 +20,9 @@ char *findCommand(char **pathList, char *command)
     {
         tmp = command_path;
         command_path = ft_strjoin(pathList[i], command);
+        free(tmp);
         if(!access(command_path, 0))
             return (command_path);
-        free(tmp);
         i++;
     }
     return (NULL);

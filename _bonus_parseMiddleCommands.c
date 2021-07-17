@@ -13,7 +13,9 @@ int _bonus_parseMiddleCommands(int commands_num, int **fd, char *argv[], char **
     {
         pid = fork();
         if (pid == 0)
+        {
             _bonus_parseCmd(&fd, j, commands_num, argv, pathList, flag);
+        }
         j++;
     }
     return (0);

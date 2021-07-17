@@ -10,7 +10,6 @@
 
 void printError(char *command, int flag)
 {
- //   int res;
     char *prefix;
 
     if (flag == 0)

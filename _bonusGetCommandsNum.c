@@ -14,10 +14,5 @@ int _bonusGetCommandsNum(int argc, int ***fd, int flag)
         commands_num++;
     }
     commands_num = commands_num - 1 - flag;
-//
-//    if (flag != HERE_DOC)
-//        commands_num--;
-//    else
-//        commands_num -= 2;
     return commands_num;
 }

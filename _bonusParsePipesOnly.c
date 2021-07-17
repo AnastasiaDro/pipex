@@ -9,6 +9,7 @@ int _bonusParsePipesOnly(char *argv[], char **pathList, int **fd, int commands_n
     _bonus_parseMiddleCommands(commands_num, fd, argv, pathList, 0);
     parseLastCommand(argv, pathList, fd, commands_num, argc);
     _bonus_closeAllFds(&fd, commands_num);
+    mFree((void **)pathList);
     waitChildren();
     return (0);
 }

@@ -17,7 +17,7 @@ char **getExecArr(char *command, char **pathList)
     if (path_command == NULL)
     {
         printError(command, 1);
-      //  printf("%s\n", strerror(errno));
+        mFree((void **)pathList);
         return (NULL);
     }
     execArr[0] = path_command;

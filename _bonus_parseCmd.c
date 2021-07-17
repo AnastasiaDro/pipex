@@ -14,12 +14,14 @@ int _bonus_parseCmd(int ***fd, int current_index, int commands_num, char *argv[]
         coef = 3;
     else
         coef = 2;
-
     command = argv[coef + current_index];
-//    printf("coef + current_index = %d\n", coef + current_index);
-//    printf("command = %s\n", command);
     execArr = getExecArr(command, pathList);
     tmp = *fd;
+    if (execArr == NULL)
+    {
+        _bonus_closeAllFds(fd, commands_num);
+         exit(0);
+    }
     dup2(tmp[current_index][0], STDIN_FILENO);
     dup2(tmp[current_index + 1][1], STDOUT_FILENO);
     _bonus_closeAllFds(fd, commands_num);

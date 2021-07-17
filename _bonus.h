@@ -16,5 +16,6 @@ int _bonusGetCommandsNum(int argc, int ***fd, int flag);
 int  _bonusGetTmpFile(char *argv[]);
 int _bonusGetStdin(int **fd, char *command, char **pathList, int tmpFd, int commands_num);
 int _bonusParsePipesOnly(char *argv[], char **pathList, int **fd, int commands_num, int argc);
+int _bonusParseLastRedirect(char *argv[], char **pathList, int **fd, int commands_num, int argc);
 
 #endif //PIPEX__BONUS_H

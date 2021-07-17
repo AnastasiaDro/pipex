@@ -12,28 +12,19 @@ int main(int argc, char *argv[], char **envp)
     int commands_num;
     int flag;
 
-
     if (argc < 5)
     {
         write(1, ARGNUM_ERR, ft_strlen(ARGNUM_ERR));
         return (1);
     }
-
     flag = _bonusCheckHereDoc(argv);
     fd = malloc((argc - 2 - flag) * sizeof (int *));
     commands_num = _bonusGetCommandsNum(argc, &fd, flag);
-
     pathList = pipexSplit(findPath(envp), ':');
+
     if (flag == HERE_DOC)
         _bonusParseHereDoc(argv, pathList, fd, commands_num, argc);
     else
-    {
         _bonusParsePipesOnly(argv, pathList, fd, commands_num, argc);
-//        parseFirstCommand(argv, pathList, fd, commands_num);
-//        _bonus_parseMiddleCommands(commands_num, fd, argv, pathList, 0);
-//        parseLastCommand(argv, pathList, fd, commands_num, argc);
-//        _bonus_closeAllFds(&fd, commands_num);
-//        waitChildren();
-    }
-
+    //system("leaks pipex");
 }

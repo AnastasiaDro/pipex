@@ -9,6 +9,8 @@
 # include "libc.h"
 #include "libft/libft.h"
 
+int mFree(void **pathlist);
+
 char    *findPath(char **envp);
 
 char    **pipexSplit(char const *s, char c);

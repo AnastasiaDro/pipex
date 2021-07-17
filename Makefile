@@ -1,11 +1,12 @@
 NAME	=	pipex
 MAIN 	= 	main.c
 SRC		=	execArrSplit.c findCommand.c findPath.c getBinaryName.c getExecArr.c \
-			pipexSplit.c printError.c waitChildren.c parseFirstCommand.c parseLastCommand.c
+			pipexSplit.c printError.c waitChildren.c parseFirstCommand.c parseLastCommand.c \
+			mFree.c
 BONUS	= 	_bonusMain.c _bonus_closeAllFds.c _bonus_parseCmd.c _bonus_parseMiddleCommands.c \
 			get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
 			_bonusCheckHereDoc.c _bonusGetCommandsNum.c _bonusGetStdin.c _bonusGetTmpFile.c \
-			_bonusParseHereDoc.c _bonusParsePipesOnly.c
+			_bonusParseHereDoc.c _bonusParsePipesOnly.c _bonusParseLastRedirect.c
 BNAME	= 	bonus_pipex
 CFLAGS	= 	-Wall -Wextra -Werror
 LIBFT	= 	libft/libft.a
@@ -15,7 +16,8 @@ BOBJS 	= 	$(BONUS:.c=.o)
 OMAIN	=	$(MAIN:.c=.o)
 
 %.o: %.c
-			@$(CC) $(CFLAGS) -c -I./libft/ $< -o $(<:.c=.o)
+			#@$(CC) $(CFLAGS) -c -I./libft/ $< -o $(<:.c=.o)
+			@$(CC) -c -I./libft/ $< -o $(<:.c=.o)
 
 $(NAME):	$(OMAIN) $(OBJS)
 			@make bonus -C libft
