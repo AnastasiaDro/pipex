@@ -21,6 +21,8 @@ int _bonusParseHereDoc(char *argv[], char **pathList, int **fd, int commands_num
 
 
     close(tmpFd);
+
+
     pid = fork();
     if (pid < 0)
         return (2);

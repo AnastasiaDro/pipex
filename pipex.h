@@ -7,6 +7,7 @@
 # include <errno.h>
 # include "unistd.h"
 # include "libc.h"
+#include "libft/libft.h"
 
 char    *findPath(char **envp);
 
