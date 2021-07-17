@@ -3,74 +3,48 @@
 #include "libft/libft.h"
 # include "get_next_line/get_next_line.h"
 
-int _bonusParseHereDoc(char **argv, char **pathList, int argc)
+int _bonusParseHereDoc(char *argv[], char **pathList, int **fd, int commands_num, int argc)
 {
-   char *line;
-    int *fd;
     int pid;
     char *command;
     char **execArr;
     int fileFd;
-    char *str;
     int tmpFd;
 
-    line = "";
-    str = malloc(1 * sizeof (char));
-    str[0] = '\0';
-    fd = malloc(2 * sizeof (int));
-    pipe(fd);
 
-    tmpFd = open("tmpFile", O_CREAT | O_RDWR, 0644);
-    write(1, "> ", 2);
-    get_next_line(STDIN_FILENO, &line);
-    write(tmpFd, line, ft_strlen(line));
-    while (ft_strcmp(line, argv[2]))
-    {
-        write(1, "> ", 2);
-        write(tmpFd, line, ft_strlen(line));
-        write(tmpFd, "\n", 1);
-        get_next_line(STDIN_FILENO, &line);
-    }
-    pid = fork();
-    if (pid < 0)
-        return (2);
-    if(pid == 0)
-    {
-        tmpFd = open("tmpFile", O_RDONLY, 0644);
-        command = argv[3];
-        dup2(tmpFd, STDIN_FILENO);
-        execArr = getExecArr(command, pathList);
-        dup2(fd[1], STDOUT_FILENO);
-        close(tmpFd);
-        close(fd[0]);
-        close(fd[1]);
-        free(fd);
-        execve(execArr[0], execArr, NULL);
-    }
+    //обработка первой команды
+    command = argv[3];
+    tmpFd = _bonusGetTmpFile(fd, argv);
+    _bonusGetStdin(fd, command, pathList, tmpFd, commands_num);
+    //обработка команд посередине
+    _bonus_parseMiddleCommands(commands_num, fd, argv, pathList, HERE_DOC);
+
+
+    close(tmpFd);
     pid = fork();
     if (pid < 0)
         return (2);
     if(pid == 0) {
-        close(tmpFd);
         command = argv[argc - 2];
         execArr = getExecArr(command, pathList);
         if(!access(argv[argc - 1], 0))
             fileFd = open(argv[argc - 1], O_RDWR | O_APPEND); //открываем файл, из которого берём данные
         else
             fileFd = open(argv[argc - 1], O_CREAT | O_RDWR, 0644);
+        if (fileFd == -1)
+        {
+            printError(argv[argc - 1], 0);
+        }
+        dup2(fd[commands_num - 1][0], STDIN_FILENO);
         dup2(fileFd, STDOUT_FILENO);
-        dup2(fd[0], STDIN_FILENO);
-        close(fd[1]);
-        close(fd[0]);
         close(fileFd);
+        _bonus_closeAllFds(&fd, commands_num);
         free(fd);
         execve(execArr[0], execArr, NULL);
     }
-    close(fd[0]);
-    close(fd[1]);
+    _bonus_closeAllFds(&fd, commands_num);
     free(fd);
     waitChildren();
-    close(tmpFd);
     unlink("tmpFile");
     return (0);
 }

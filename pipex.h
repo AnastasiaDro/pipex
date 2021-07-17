@@ -5,6 +5,8 @@
 # define ARGNUM_ERR "Invalid arguments number!\n"
 # define COMMAND_ERR "command not found"
 # include <errno.h>
+# include "unistd.h"
+# include "libc.h"
 
 char    *findPath(char **envp);
 

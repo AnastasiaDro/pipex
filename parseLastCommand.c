@@ -11,6 +11,8 @@ int parseLastCommand(char *argv[], char **pathList, int **fd, int commands_num, 
     int fileFd;
 
     pid = fork();
+    if (pid < 0)
+        return (2);
     if (pid == 0)
     {
         command = argv[argc - 2];
@@ -28,6 +30,7 @@ int parseLastCommand(char *argv[], char **pathList, int **fd, int commands_num, 
         close(fileFd);
         _bonus_closeAllFds(&fd, commands_num);
         execve(execArr[0], execArr, NULL);
+        free(fd);
     }
     return (1);
 }

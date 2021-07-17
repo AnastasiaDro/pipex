@@ -32,7 +32,7 @@ BOBJS	=	$(BONUS:.c=.o)
 			@$(CC) $(FLAGS) -g -c $< -o $(<:.c=.o)
 
 $(NAME):	$(OBJS)
-			ar rc libft.a $(OBJS)
+			@ar rc libft.a $(OBJS)
 
 all:		$(NAME)
 
@@ -45,10 +45,9 @@ fclean:		clean
 re:			fclean all
 
 bonus:		$(OBJS) $(BOBJS)
-			ar rc libft.a $(OBJS) $(BOBJS)
+			@ar rc libft.a $(OBJS) $(BOBJS)
 
 bfclean:
-			rm -f $(OBJS)$(BOBJS)
-			rm -f $(NAME)
+			@@rm -f $(NAME)
 			
 .PHONY:		all clean fclean re bonus bclean
