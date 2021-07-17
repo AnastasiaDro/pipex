@@ -3,13 +3,21 @@
 #include "pipex.h"
 #include "libft/libft.h"
 
-int _bonus_parseCmd(int ***fd, int current_index, int commands_num, char *argv[], char **pathList)
+int _bonus_parseCmd(int ***fd, int current_index, int commands_num, char *argv[], char **pathList, int flag)
 {
     int **tmp;
     char *command;
     char **execArr;
+    int coef;
 
-    command = argv[2 + current_index];
+    if (flag == HERE_DOC)
+        coef = 3;
+    else
+        coef = 2;
+
+    command = argv[coef + current_index];
+//    printf("coef + current_index = %d\n", coef + current_index);
+//    printf("command = %s\n", command);
     execArr = getExecArr(command, pathList);
     tmp = *fd;
     dup2(tmp[current_index][0], STDIN_FILENO);
