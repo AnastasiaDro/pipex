@@ -10,4 +10,5 @@ int _bonusParsePipesOnly(char *argv[], char **pathList, int **fd, int commands_n
     parseLastCommand(argv, pathList, fd, commands_num, argc);
     _bonus_closeAllFds(&fd, commands_num);
     waitChildren();
+    return (0);
 }

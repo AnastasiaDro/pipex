@@ -14,7 +14,7 @@ int _bonusParseHereDoc(char *argv[], char **pathList, int **fd, int commands_num
 
     //обработка первой команды
     command = argv[3];
-    tmpFd = _bonusGetTmpFile(fd, argv);
+    tmpFd = _bonusGetTmpFile(argv);
     _bonusGetStdin(fd, command, pathList, tmpFd, commands_num);
     //обработка команд посередине
     _bonus_parseMiddleCommands(commands_num, fd, argv, pathList, HERE_DOC);

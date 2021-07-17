@@ -7,7 +7,7 @@
 #include "libft/libft.h"
 # include "get_next_line/get_next_line.h"
 
-int  _bonusGetTmpFile(int **fd, char *argv[])
+int  _bonusGetTmpFile( char *argv[])
 {
     char *line;
     char *str;

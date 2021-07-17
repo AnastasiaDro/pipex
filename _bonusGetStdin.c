@@ -9,9 +9,6 @@ int _bonusGetStdin(int **fd, char *command, char **pathList, int tmpFd, int comm
 {
     int pid;
     char **execArr;
-    //debug
-
-
     pid = fork();
     if (pid < 0)
         return (2);
@@ -25,7 +22,6 @@ int _bonusGetStdin(int **fd, char *command, char **pathList, int tmpFd, int comm
         write(1, "_bonusGetStdin\n", strlen("_bonusGetStdin\n"));
         dup2(fd[1][1], STDOUT_FILENO);
         close(tmpFd);
-
         close(fd[0][0]);
         close(fd[1][1]);
         _bonus_closeAllFds(&fd, commands_num);
