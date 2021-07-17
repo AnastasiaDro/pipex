@@ -9,7 +9,7 @@ int main(int argc, char *argv[], char **envp)
 
     char **pathList;
     int **fd;
-    int *hereFd;
+   // int *hereFd;
     int commands_num;
     int flag;
 
