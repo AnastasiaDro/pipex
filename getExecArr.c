@@ -1,10 +1,5 @@
-//
-// Created by Cesar Erebus on 7/6/21.
-//
 
-#include <printf.h>
 #include <string.h>
-#include <errno.h>
 #include "pipex.h"
 
 char **getExecArr(char *command, char **pathList)
