@@ -24,4 +24,5 @@ int	main(int argc, char *argv[], char **envp)
 		_bonusParseHereDoc(argv, pathList, fd, commands_num, argc);
 	else
 		_bonusParsePipesOnly(argv, pathList, fd, commands_num, argc);
+    free(fd);
 }

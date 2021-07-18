@@ -33,7 +33,7 @@ int main(int argc, char *argv[], char **envp)
         fileFd = open(argv[1], O_RDWR); //открываем файл, из которого берём данные
         if (fileFd == -1)
         {
-            printError(FILE_ERR, argv[1]);
+            printError(argv[1], 0);
             return 9;
         }
         dup2(pfd[1], STDOUT_FILENO);
@@ -43,6 +43,7 @@ int main(int argc, char *argv[], char **envp)
         close(fileFd);
         command = argv[2];
         execArr = getExecArr(command, pathList);
+        mFree(pathList);
         execve(execArr[0], execArr, envp); //вы
     }
 
@@ -55,7 +56,7 @@ int main(int argc, char *argv[], char **envp)
         fileFd = open(argv[4], O_WRONLY);
         if (fileFd == -1)
         {
-            printError(FILE_ERR, argv[4]);
+            printError( argv[4], 0);
             return 9;
         }
         dup2(pfd[0], STDIN_FILENO);

@@ -20,4 +20,3 @@ int ft_strcmp(const char *s1, const char *s2)
         max_len = s2_len;
     return (ft_strncmp(s1, s2, max_len));
 }
-
