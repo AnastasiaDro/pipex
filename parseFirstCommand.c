@@ -21,19 +21,25 @@ int parseFirstCommand(char *argv[], char **pathList, int **fd, int commands_num)
     if (pid == 0)
     {
         command = argv[2];
-        execArr = getExecArr(command, pathList);
         fileFd = open(argv[1], O_RDWR); //открываем файл, из которого берём данные
         if (fileFd == -1)
         {
             printError(argv[1], 0);
+            mFree(pathList);
             _bonus_closeAllFds(&fd, commands_num);
-            return 9;
+            exit(0);
+        }
+        execArr = getExecArr(command, pathList);
+        if (!execArr)
+        {
+            _bonus_closeAllFds(&fd, commands_num);
+            mFree(pathList);
+            exit(0);
         }
         dup2(fd[1][1], STDOUT_FILENO);
         dup2(fileFd, STDIN_FILENO);
         close(fileFd);
         _bonus_closeAllFds(&fd, commands_num);
-       // free(fd);
         mFree(pathList);
         execve(execArr[0], execArr, NULL);
     }

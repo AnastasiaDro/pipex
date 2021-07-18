@@ -1,6 +1,3 @@
-//
-// Created by Cesar Erebus on 7/11/21.
-//
 #include <errno.h>
 #include <stdio.h>
 #include "pipex.h"
