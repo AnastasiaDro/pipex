@@ -6,7 +6,6 @@
 #include "pipex.h"
 #include "unistd.h"
 #include "libft/libft.h"
-#include "libft/bonus.h"
 
 void printError(char *command, int flag)
 {
@@ -20,9 +19,11 @@ void printError(char *command, int flag)
     }
     if (flag == 1)
     {
-        prefix = _bonusThreeStr_join(NAME, command, COMMAND_ERR);
         errno = 127;
-        write(2, prefix, ft_strlen(prefix));
+        write(2, NAME, ft_strlen(NAME));
+        write(2, command, ft_strlen(command));
+        write(2, ": ", 2);
+        write(2, COMMAND_ERR, ft_strlen(COMMAND_ERR));
         write(2, "\n", 1);
     }
 }

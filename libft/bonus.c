@@ -1,6 +1,7 @@
 //
 // Created by Cesar Erebus on 7/4/21.
 //
+#include <printf.h>
 #include "bonus.h"
 #include "stdlib.h"
 
@@ -33,8 +34,13 @@ char	*_bonusThreeStr_join(char const *s1, char const *s2, char const *s3)
     if (!newstr)
         return (NULL);
     src_len = ft_strlcpy(newstr, s1, new_s_flen);
+    printf("1 scrlen = %d newstr = %s\n", (int)src_len, newstr);
     src_len = ft_strlcpy(&newstr[src_len], s2, new_s_flen);
-    src_len = ft_strlcpy(&newstr[src_len], s3, new_s_flen);
+    printf("2 scrlen = %d newstr = %s\n", (int)src_len, newstr);
+    src_len = ft_strlcpy(&newstr[ft_strlen(newstr)], s3, new_s_flen);
+    printf("s3 = %s\n", s3);
+    printf("3 scrlen = %d newstr = %s\n", (int)src_len, newstr);
     newstr[new_s_flen - 1] = '\0';
     return (newstr);
 }
+
