@@ -15,8 +15,10 @@ int _bonusParseHereDoc(char *argv[], char **pathList, int **fd, int commands_num
     close(tmpFd);
     _bonusParseLastRedirect(argv, pathList, fd, commands_num, argc);
     mFree(pathList);
+
     _bonus_closeAllFds(&fd, commands_num);
     waitChildren();
     unlink("tmpFile");
+ //   system("leaks bonus_pipex");
     return (0);
 }

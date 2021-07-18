@@ -6,8 +6,6 @@
 #include <sys/fcntl.h>
 #include "pipex.h"
 #include "_bonus.h"
-#include <errno.h>
-#include <printf.h>
 #include <string.h>
 
 int parseFirstCommand(char *argv[], char **pathList, int **fd, int commands_num)
