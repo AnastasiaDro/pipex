@@ -9,7 +9,7 @@
 # include "libc.h"
 #include "libft/libft.h"
 
-int mFree(void **pathlist);
+int mFree(char **pathlist);
 
 char    *findPath(char **envp);
 

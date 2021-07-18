@@ -36,7 +36,7 @@ int parseFirstCommand(char *argv[], char **pathList, int **fd, int commands_num)
         close(fileFd);
         _bonus_closeAllFds(&fd, commands_num);
        // free(fd);
-        mFree((void **)(pathList));
+        mFree(pathList);
         execve(execArr[0], execArr, NULL);
     }
     return (1);

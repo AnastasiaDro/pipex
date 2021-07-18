@@ -8,7 +8,7 @@ add_executable(pipex _bonusMain.c findPath.c redirectOut.c findCommand.c pipexSp
                 getExecArr.c _bonus_parseCmd.c _bonus_closeAllFds.c printError.c waitChildren.c parseFirstCommand.c
                 _bonus_parseMiddleCommands.c parseLastCommand.c _bonusParseHereDoc.c libft/bonus.c
                  get_next_line/get_next_line.c get_next_line/get_next_line_utils.c _bonusGetCommandsNum.c
-        _bonusGetTmpFile.c _bonusGetStdin.c _bonusCheckHereDoc.c _bonusParsePipesOnly.c mFree.c _bonusParseLastRedirect.c)
+                _bonusGetTmpFile.c _bonusGetStdin.c _bonusCheckHereDoc.c _bonusParsePipesOnly.c mFree.c _bonusParseLastRedirect.c)
 
 
-target_link_libraries(pipex "/Users/cerebus/projects/clion_cub3d2/libft.a")
+target_link_libraries(pipex "/Users/cerebus/CLionProjects/pipex/libft/libft.a")

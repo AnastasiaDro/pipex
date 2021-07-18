@@ -3,7 +3,7 @@
 //
 #include "pipex.h"
 
-int mFree(void **pathlist)
+int mFree(char **pathlist)
 {
     int i;
 

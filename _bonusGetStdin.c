@@ -22,9 +22,7 @@ int _bonusGetStdin(int **fd, char *command, char **pathList, int tmpFd, int comm
         close(fd[0][0]);
         close(fd[1][1]);
         _bonus_closeAllFds(&fd, commands_num);
-        mFree((void **)fd);
-        mFree((void **)pathList);
-
+        mFree(pathList);
         execve(execArr[0], execArr, NULL);
     }
     return (0);

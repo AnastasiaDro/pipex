@@ -14,7 +14,7 @@ int _bonusParseHereDoc(char *argv[], char **pathList, int **fd, int commands_num
     _bonus_parseMiddleCommands(commands_num, fd, argv, pathList, HERE_DOC);
     close(tmpFd);
     _bonusParseLastRedirect(argv, pathList, fd, commands_num, argc);
-    mFree((void **)pathList);
+    mFree(pathList);
     _bonus_closeAllFds(&fd, commands_num);
     waitChildren();
     unlink("tmpFile");
