@@ -14,5 +14,5 @@ int _bonusGetCommandsNum(int argc, int ***fd, int flag)
         commands_num++;
     }
     commands_num = commands_num - 1 - flag;
-    return commands_num;
+    return (commands_num);
 }

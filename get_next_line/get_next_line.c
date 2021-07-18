@@ -23,7 +23,7 @@ int		ft_increase_tail(char **tail, char **buff, int *start, int read_bytes)
 		*start = *start + read_bytes;
 	(*buff)[read_bytes] = '\0';
 	tail_tmp = *tail;
-	*tail = ft_strjoin(*tail, *buff);
+	*tail = ft_gstrjoin(*tail, *buff);
 	free(tail_tmp);
 	if (!(*tail))
 	{

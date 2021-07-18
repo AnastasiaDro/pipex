@@ -16,4 +16,5 @@ void	_bonus_closeAllFds(int ***fd, int commands_num)
 		tmp[i] = NULL;
 		i++;
 	}
+	free(*fd);
 }
