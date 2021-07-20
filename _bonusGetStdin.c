@@ -3,9 +3,9 @@
 //
 #include <sys/fcntl.h>
 #include "pipex.h"
-#include "_bonus.h"
+#include "pipex_bonus.h"
 
-int _bonusGetStdin(int **fd, char *command, char **pathList, int tmpFd, int commands_num)
+int _bonusGetStdin(int **fd, char *command, char **pathList, int tmpFd, t_bstruct *bstruct)
 {
     int pid;
     char **execArr;
@@ -21,7 +21,7 @@ int _bonusGetStdin(int **fd, char *command, char **pathList, int tmpFd, int comm
         close(tmpFd);
         close(fd[0][0]);
         close(fd[1][1]);
-        closeAllFds(&fd, commands_num);
+        closeAllFds(&fd, bstruct->commands_num);
         mFree(pathList);
         execve(execArr[0], execArr, NULL);
     }

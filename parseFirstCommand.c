@@ -4,10 +4,10 @@
 
 #include <unistd.h>
 #include <sys/fcntl.h>
-#include "pipex.h"
+#include "pipex_bonus.h"
 #include <string.h>
 
-int parseFirstCommand(char *argv[], char **pathList, int **fd, int commands_num)
+int parseFirstCommand(char **pathList, int **fd, t_bstruct *bStruct)
 {
     int pid;
     char *command;
@@ -19,26 +19,26 @@ int parseFirstCommand(char *argv[], char **pathList, int **fd, int commands_num)
         return (2);
     if (pid == 0)
     {
-        command = argv[2];
-        fileFd = open(argv[1], O_RDWR); //открываем файл, из которого берём данные
+        command = (bStruct->argv)[2];
+        fileFd = open((bStruct->argv)[1], O_RDWR); //открываем файл, из которого берём данные
         if (fileFd == -1)
         {
-            printError(argv[1], 0);
+            printError((bStruct->argv)[1], 0);
             mFree(pathList);
-            closeAllFds(&fd, commands_num);
+            closeAllFds(&fd, bStruct->commands_num);
             exit(0);
         }
         execArr = getExecArr(command, pathList);
         if (!execArr)
         {
-            closeAllFds(&fd, commands_num);
+            closeAllFds(&fd, bStruct->commands_num);
             mFree(pathList);
             exit(0);
         }
         dup2(fd[1][1], STDOUT_FILENO);
         dup2(fileFd, STDIN_FILENO);
         close(fileFd);
-        closeAllFds(&fd, commands_num);
+        closeAllFds(&fd, bStruct->commands_num);
         mFree(pathList);
         execve(execArr[0], execArr, NULL);
     }

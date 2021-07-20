@@ -1,6 +1,6 @@
 
 #include "pipex.h"
-#include "_bonus.h"
+#include "pipex_bonus.h"
 
 int _bonusGetCommandsNum(int argc, int ***fd, int flag)
 {

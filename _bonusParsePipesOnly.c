@@ -1,14 +1,12 @@
-//
-// Created by Cesar Erebus on 7/17/21.
-//
-#include "_bonus.h"
 
-int _bonusParsePipesOnly(char *argv[], char **pathList, int **fd, int commands_num, int argc)
+#include "pipex_bonus.h"
+
+int _bonusParsePipesOnly(char **pathList, int **fd, t_bstruct *bStruct)
 {
-    parseFirstCommand(argv, pathList, fd, commands_num);
-    _bonus_parseMiddleCommands(commands_num, fd, argv, pathList, 0);
-    parseLastCommand(argv, pathList, fd, commands_num, argc);
-    closeAllFds(&fd, commands_num);
+    parseFirstCommand(pathList, fd, bStruct);
+    _bonus_parseMiddleCommands(fd, pathList, bStruct);
+    parseLastCommand(pathList, fd, bStruct);
+    closeAllFds(&fd, bStruct->commands_num);
     mFree(pathList);
     waitChildren();
     system("leaks pipex");
