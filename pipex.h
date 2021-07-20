@@ -18,10 +18,10 @@ char	**execArrSplit(char const *s, char c, int *arrLen);
 char	**getExecArr(char *command, char **pathList);
 void	printError(char *command, int flag);
 void	waitChildren(void);
-void 	simpleCheckFileFd(int fileFd, char *argv[], char **pathList);
-void 	simpleCheckExecArr(char **execArr, char **pathList);
+void	simpleCheckFileFd(int fileFd, char *argv[], char **pathList);
+void	simpleCheckExecArr(char **execArr, char **pathList);
 int		simpleFirstCommand(int *fd, char **argv, char **pathList);
 int		simpleLastCommand(int *fd, char *argv[], char **pathList);
-void 	simpleCloseFds(int *fd, int fileFd);
+void	simpleCloseFds(int *fd, int fileFd);
 
 #endif
