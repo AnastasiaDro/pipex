@@ -19,12 +19,12 @@ int    bonusParseCmd(int ***fd, int current_index, t_bstruct *bStruct)
     tmp = *fd;
     if (execArr == NULL)
     {
-        closeAllFds(fd, bStruct->commands_num);
+        bonusCloseAllFds(fd, bStruct->commands_num);
          exit(0);
     }
     dup2(tmp[current_index][0], STDIN_FILENO);
     dup2(tmp[current_index + 1][1], STDOUT_FILENO);
-    closeAllFds(fd, bStruct->commands_num);
+    bonusCloseAllFds(fd, bStruct->commands_num);
     execve(execArr[0], execArr, NULL);
     return (0);
 }

@@ -29,7 +29,7 @@ int bonusParseLastRedirect(int **fd, t_bstruct *bStruct)
         dup2(fd[bStruct->commands_num - 1][0], STDIN_FILENO);
         dup2(fileFd, STDOUT_FILENO);
         close(fileFd);
-        closeAllFds(&fd, bStruct->commands_num);
+        bonusCloseAllFds(&fd, bStruct->commands_num);
         mFree(bStruct->pathList);
         execve(execArr[0], execArr, NULL);
         return (1);

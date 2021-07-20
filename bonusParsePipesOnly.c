@@ -6,7 +6,7 @@ int bonusParsePipesOnly(int **fd, t_bstruct *bStruct)
     parseFirstCommand(fd, bStruct);
     bonusParseMiddleCommands(fd, bStruct);
     parseLastCommand(fd, bStruct);
-    closeAllFds(&fd, bStruct->commands_num);
+    bonusCloseAllFds(&fd, bStruct->commands_num);
     mFree(bStruct->pathList);
     waitChildren();
     system("leaks pipex");

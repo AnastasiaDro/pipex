@@ -16,7 +16,6 @@ int	main(int argc, char *argv[], char **envp)
 		return (1);
 	}
     initStruct(&bStruct, argc, argv, envp);
-
 	fd = malloc(bStruct.commands_num * sizeof (int *));
         int i;
         i = 0;
@@ -26,7 +25,6 @@ int	main(int argc, char *argv[], char **envp)
            pipe(fd[i]);
            i++;
         }
-	//pathList = pipexSplit(findPath(envp), ':');
 	if (bStruct.flag == HERE_DOC)
         bonusParseHereDoc(fd, &bStruct);
 	else

@@ -21,7 +21,7 @@ int bonusGetStdin(int **fd, char *command, int tmpFd, t_bstruct *bStruct)
         close(tmpFd);
         close(fd[0][0]);
         close(fd[1][1]);
-        closeAllFds(&fd, bStruct->commands_num);
+        bonusCloseAllFds(&fd, bStruct->commands_num);
         mFree(bStruct->pathList);
         execve(execArr[0], execArr, NULL);
     }

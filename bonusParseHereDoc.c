@@ -17,7 +17,7 @@ int bonusParseHereDoc(int **fd, t_bstruct *bStruct)
     close(tmpFd);
     bonusParseLastRedirect(fd, bStruct);
     mFree(bStruct->pathList);
-    closeAllFds(&fd, commands_num);
+    bonusCloseAllFds(&fd, commands_num);
     waitChildren();
     unlink("tmpFile");
     system("leaks pipex");

@@ -29,6 +29,6 @@ void printError(char *command, int flag);
 void    waitChildren(void);
 
 
-void	closeAllFds(int ***fd, int commands_num);
+
 
 #endif

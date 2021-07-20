@@ -1,7 +1,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-void	closeAllFds(int ***fd, int commands_num)
+void	bonusCloseAllFds(int ***fd, int commands_num)
 {
 	int	i;
 	int	**tmp;

@@ -18,4 +18,3 @@ int bonusParseMiddleCommands(int **fd, t_bstruct *bstruct)
     }
     return (0);
 }
-

@@ -25,20 +25,20 @@ int parseFirstCommand(int **fd, t_bstruct *bStruct)
         {
             printError((bStruct->argv)[1], 0);
             mFree(bStruct->pathList);
-            closeAllFds(&fd, bStruct->commands_num);
+            bonusCloseAllFds(&fd, bStruct->commands_num);
             exit(0);
         }
         execArr = getExecArr(command, bStruct->pathList);
         if (!execArr)
         {
-            closeAllFds(&fd, bStruct->commands_num);
+            bonusCloseAllFds(&fd, bStruct->commands_num);
             mFree(bStruct->pathList);
             exit(0);
         }
         dup2(fd[1][1], STDOUT_FILENO);
         dup2(fileFd, STDIN_FILENO);
         close(fileFd);
-        closeAllFds(&fd, bStruct->commands_num);
+        bonusCloseAllFds(&fd, bStruct->commands_num);
         mFree(bStruct->pathList);
         execve(execArr[0], execArr, NULL);
     }
