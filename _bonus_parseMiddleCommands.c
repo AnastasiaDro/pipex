@@ -1,18 +1,18 @@
 #include <unistd.h>
 #include "pipex_bonus.h"
 
-int _bonus_parseMiddleCommands(int **fd, char **pathList, t_bstruct *bStruct)
+int bonusParseMiddleCommands(int **fd, t_bstruct *bstruct)
 {
     int j;
     int pid;
 
     j = 1;
-    while(j < bStruct->commands_num - 1)
+    while(j < bstruct->commands_num - 1)
     {
         pid = fork();
         if (pid == 0)
         {
-            _bonus_parseCmd(&fd, j, pathList, bStruct);
+            bonusParseCmd(&fd, j, bstruct);
         }
         j++;
     }

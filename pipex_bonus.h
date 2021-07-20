@@ -13,18 +13,18 @@ typedef struct s_bstruct
     int     flag;
     int     commands_num;
     char    **argv;
+    char    **pathList;
 }              t_bstruct;
 
-void    initStruct(t_bstruct *bstruct, int argc, char *argv[]);
-void closeAllFds(int ***fd, int commands_num);
-int _bonus_parseCmd(int ***fd, int current_index, char **pathList, t_bstruct *bStruct);
-int _bonus_parseMiddleCommands(int **fd, char **pathList,  t_bstruct *bstruct);
-int _bonusParseHereDoc(char **pathList, int **fd, t_bstruct *bStruct);
-int _bonusCheckHereDoc(char *argv[]);
-int  _bonusGetTmpFile(char *argv[]);
-int _bonusGetStdin(int **fd, char *command, char **pathList, int tmpFd, t_bstruct *tBstruct);
-int _bonusParsePipesOnly(char **pathList, int **fd,  t_bstruct *tBstruct);
-int _bonusParseLastRedirect(char **pathList, int **fd, t_bstruct *bstruct);
-int parseLastCommand(char **pathList, int **fd, t_bstruct *bStruct);
-int parseFirstCommand(char **pathList, int **fd, t_bstruct *bStruct);
+void    initStruct(t_bstruct *bstruct, int argc, char *argv[], char **envp);
+int     bonusParseCmd(int ***fd, int current_index, t_bstruct *bStruct);
+int     bonusParseMiddleCommands(int **fd, t_bstruct *bstruct);
+int     bonusParseHereDoc(int **fd, t_bstruct *bStruct);
+int     bonusCheckHereDoc(char **argv);
+int     bonusGetTmpFile(char **argv);
+int     bonusGetStdin(int **fd, char *command, int tmpFd, t_bstruct *bStruct);
+int     bonusParsePipesOnly(int **fd, t_bstruct *bStruct);
+int     bonusParseLastRedirect(int **fd, t_bstruct *bStruct);
+int     parseLastCommand(int **fd, t_bstruct *bStruct);
+int     parseFirstCommand(int **fd, t_bstruct *bStruct);
 #endif

@@ -7,7 +7,7 @@
 #include "pipex_bonus.h"
 #include <string.h>
 
-int parseFirstCommand(char **pathList, int **fd, t_bstruct *bStruct)
+int parseFirstCommand(int **fd, t_bstruct *bStruct)
 {
     int pid;
     char *command;
@@ -24,22 +24,22 @@ int parseFirstCommand(char **pathList, int **fd, t_bstruct *bStruct)
         if (fileFd == -1)
         {
             printError((bStruct->argv)[1], 0);
-            mFree(pathList);
+            mFree(bStruct->pathList);
             closeAllFds(&fd, bStruct->commands_num);
             exit(0);
         }
-        execArr = getExecArr(command, pathList);
+        execArr = getExecArr(command, bStruct->pathList);
         if (!execArr)
         {
             closeAllFds(&fd, bStruct->commands_num);
-            mFree(pathList);
+            mFree(bStruct->pathList);
             exit(0);
         }
         dup2(fd[1][1], STDOUT_FILENO);
         dup2(fileFd, STDIN_FILENO);
         close(fileFd);
         closeAllFds(&fd, bStruct->commands_num);
-        mFree(pathList);
+        mFree(bStruct->pathList);
         execve(execArr[0], execArr, NULL);
     }
     return (1);

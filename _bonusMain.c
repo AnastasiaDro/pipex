@@ -15,9 +15,7 @@ int	main(int argc, char *argv[], char **envp)
 		write(1, ARGNUM_ERR, ft_strlen(ARGNUM_ERR));
 		return (1);
 	}
-    initStruct(&bStruct, argc, argv);
-
-
+    initStruct(&bStruct, argc, argv, envp);
 
 	fd = malloc(bStruct.commands_num * sizeof (int *));
         int i;
@@ -28,9 +26,9 @@ int	main(int argc, char *argv[], char **envp)
            pipe(fd[i]);
            i++;
         }
-	pathList = pipexSplit(findPath(envp), ':');
+	//pathList = pipexSplit(findPath(envp), ':');
 	if (bStruct.flag == HERE_DOC)
-		_bonusParseHereDoc(pathList, fd, &bStruct);
+        bonusParseHereDoc(fd, &bStruct);
 	else
-		_bonusParsePipesOnly(pathList, fd,  &bStruct);
+        bonusParsePipesOnly(fd, &bStruct);
 }

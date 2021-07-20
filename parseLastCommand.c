@@ -2,7 +2,7 @@
 #include <sys/fcntl.h>
 #include "pipex_bonus.h"
 
-int parseLastCommand(char **pathList, int **fd, t_bstruct *bStruct)
+int parseLastCommand(int **fd, t_bstruct *bStruct)
 {
     int pid;
     char *command;
@@ -15,7 +15,7 @@ int parseLastCommand(char **pathList, int **fd, t_bstruct *bStruct)
     if (pid == 0)
     {
         command = bStruct->argv[bStruct->argc - 2];
-        execArr = getExecArr(command, pathList);
+        execArr = getExecArr(command, bStruct->pathList);
         if(!access(bStruct->argv[bStruct->argc - 1], 0))
             fileFd = open(bStruct->argv[bStruct->argc - 1], O_TRUNC | O_RDWR); //открываем файл, из которого берём данные
         else

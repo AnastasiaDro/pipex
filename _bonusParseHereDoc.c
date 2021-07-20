@@ -3,7 +3,7 @@
 #include "libft/libft.h"
 # include "get_next_line/get_next_line.h"
 
-int _bonusParseHereDoc(char **pathList, int **fd, t_bstruct *bStruct)
+int bonusParseHereDoc(int **fd, t_bstruct *bStruct)
 {
     char *command;
     int tmpFd;
@@ -11,12 +11,12 @@ int _bonusParseHereDoc(char **pathList, int **fd, t_bstruct *bStruct)
 
     commands_num = bStruct->commands_num;
     command = bStruct->argv[3];
-    tmpFd = _bonusGetTmpFile(bStruct->argv);
-    _bonusGetStdin(fd, command, pathList, tmpFd, bStruct);
-    _bonus_parseMiddleCommands(fd, pathList, bStruct);
+    tmpFd = bonusGetTmpFile(bStruct->argv);
+    bonusGetStdin(fd, command, tmpFd, bStruct);
+    bonusParseMiddleCommands(fd, bStruct);
     close(tmpFd);
-    _bonusParseLastRedirect(pathList, fd, bStruct);
-    mFree(pathList);
+    bonusParseLastRedirect(fd, bStruct);
+    mFree(bStruct->pathList);
     closeAllFds(&fd, commands_num);
     waitChildren();
     unlink("tmpFile");

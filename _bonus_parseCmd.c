@@ -3,7 +3,7 @@
 #include "pipex.h"
 #include "libft/libft.h"
 
-int _bonus_parseCmd(int ***fd, int current_index, char **pathList, t_bstruct *bStruct)
+int    bonusParseCmd(int ***fd, int current_index, t_bstruct *bStruct)
 {
     int **tmp;
     char *command;
@@ -15,7 +15,7 @@ int _bonus_parseCmd(int ***fd, int current_index, char **pathList, t_bstruct *bS
     else
         coef = 2;
     command = (bStruct->argv)[coef + current_index];
-    execArr = getExecArr(command, pathList);
+    execArr = getExecArr(command, bStruct->pathList);
     tmp = *fd;
     if (execArr == NULL)
     {

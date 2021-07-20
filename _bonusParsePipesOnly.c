@@ -1,13 +1,13 @@
 
 #include "pipex_bonus.h"
 
-int _bonusParsePipesOnly(char **pathList, int **fd, t_bstruct *bStruct)
+int bonusParsePipesOnly(int **fd, t_bstruct *bStruct)
 {
-    parseFirstCommand(pathList, fd, bStruct);
-    _bonus_parseMiddleCommands(fd, pathList, bStruct);
-    parseLastCommand(pathList, fd, bStruct);
+    parseFirstCommand(fd, bStruct);
+    bonusParseMiddleCommands(fd, bStruct);
+    parseLastCommand(fd, bStruct);
     closeAllFds(&fd, bStruct->commands_num);
-    mFree(pathList);
+    mFree(bStruct->pathList);
     waitChildren();
     system("leaks pipex");
     return (0);

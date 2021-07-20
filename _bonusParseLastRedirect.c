@@ -4,7 +4,7 @@
 #include "pipex.h"
 #include "pipex_bonus.h"
 
-int _bonusParseLastRedirect(char **pathList, int **fd, t_bstruct *bStruct)
+int bonusParseLastRedirect(int **fd, t_bstruct *bStruct)
 {
     int pid;
     char *command;
@@ -17,7 +17,7 @@ int _bonusParseLastRedirect(char **pathList, int **fd, t_bstruct *bStruct)
     if(pid == 0)
     {
         command = bStruct->argv[bStruct->argc - 2];
-        execArr = getExecArr(command, pathList);
+        execArr = getExecArr(command, bStruct->pathList);
         if(!access(bStruct->argv[bStruct->argc - 1], 0))
             fileFd = open(bStruct->argv[bStruct->argc - 1], O_RDWR | O_APPEND);
         else
@@ -30,7 +30,7 @@ int _bonusParseLastRedirect(char **pathList, int **fd, t_bstruct *bStruct)
         dup2(fileFd, STDOUT_FILENO);
         close(fileFd);
         closeAllFds(&fd, bStruct->commands_num);
-        mFree(pathList);
+        mFree(bStruct->pathList);
         execve(execArr[0], execArr, NULL);
         return (1);
     }

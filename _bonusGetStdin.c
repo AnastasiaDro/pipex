@@ -5,7 +5,7 @@
 #include "pipex.h"
 #include "pipex_bonus.h"
 
-int _bonusGetStdin(int **fd, char *command, char **pathList, int tmpFd, t_bstruct *bstruct)
+int bonusGetStdin(int **fd, char *command, int tmpFd, t_bstruct *bStruct)
 {
     int pid;
     char **execArr;
@@ -16,14 +16,15 @@ int _bonusGetStdin(int **fd, char *command, char **pathList, int tmpFd, t_bstruc
     {
         tmpFd = open("tmpFile", O_RDONLY, 0644);
         dup2(tmpFd, STDIN_FILENO);
-        execArr = getExecArr(command, pathList);
+        execArr = getExecArr(command, bStruct->pathList);
         dup2(fd[1][1], STDOUT_FILENO);
         close(tmpFd);
         close(fd[0][0]);
         close(fd[1][1]);
-        closeAllFds(&fd, bstruct->commands_num);
-        mFree(pathList);
+        closeAllFds(&fd, bStruct->commands_num);
+        mFree(bStruct->pathList);
         execve(execArr[0], execArr, NULL);
     }
     return (0);
 }
+

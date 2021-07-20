@@ -1,7 +1,7 @@
 
 #include "pipex_bonus.h"
 
-int _bonusCheckHereDoc(char *argv[])
+int bonusCheckHereDoc(char **argv)
 {
     int flag;
 
