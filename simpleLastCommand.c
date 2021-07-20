@@ -10,7 +10,7 @@ int	simpleLastCommand(int *fd, char *argv[], char **pathList)
 	pid = fork();
 	if (pid == 0)
 	{
-		command = argv[2];
+		command = argv[3];
 		if(!access(argv[4], 0))
 			fileFd = open(argv[4], O_TRUNC | O_RDWR);
 		else
