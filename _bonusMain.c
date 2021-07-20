@@ -17,12 +17,19 @@ int	main(int argc, char *argv[], char **envp)
 		return (1);
 	}
 	flag = _bonusCheckHereDoc(argv);
-	fd = malloc((argc - 2 - flag) * sizeof (int *));
-	commands_num = _bonusGetCommandsNum(argc, &fd, flag);
+        commands_num = argc - 2 - flag;
+	fd = malloc(commands_num * sizeof (int *));
+        int i;
+        i = 0;
+        while (i < commands_num)
+        {
+           fd[i] = malloc(sizeof(int) * 2);
+           pipe(fd[i]);
+        }
 	pathList = pipexSplit(findPath(envp), ':');
 	if (flag == HERE_DOC)
 		_bonusParseHereDoc(argv, pathList, fd, commands_num, argc);
 	else
 		_bonusParsePipesOnly(argv, pathList, fd, commands_num, argc);
-    free(fd);
+        
 }
