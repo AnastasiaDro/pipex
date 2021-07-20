@@ -24,9 +24,10 @@ int     bonusCheckHereDoc(char **argv);
 int     bonusGetTmpFile(char **argv);
 int     bonusGetStdin(int **fd, char *command, int tmpFd, t_bstruct *bStruct);
 int     bonusParsePipesOnly(int **fd, t_bstruct *bStruct);
-int     bonusParseLastRedirect(int **fd, t_bstruct *bStruct);
+int     bonusParseLastRedirect(int **fd, t_bstruct *bS);
 int     parseLastCommand(int **fd, t_bstruct *bStruct);
 int     parseFirstCommand(int **fd, t_bstruct *bStruct);
 void	bonusCloseAllFds(int ***fd, int commands_num);
 void    bonusClean(int **fd, t_bstruct *bStruct);
+void    checkFileFd(int fileFd, char *name, t_bstruct *bS, int **fd);
 #endif

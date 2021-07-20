@@ -11,9 +11,9 @@ int bonusParseMiddleCommands(int **fd, t_bstruct *bstruct)
     {
         pid = fork();
         if (pid == 0)
-        {
             bonusParseCmd(&fd, j, bstruct);
-        }
+        if (pid == -1)
+            return (-1);
         j++;
     }
     return (0);

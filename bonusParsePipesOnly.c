@@ -2,11 +2,13 @@
 
 int	bonusParsePipesOnly(int **fd, t_bstruct *bStruct)
 {
-	parseFirstCommand(fd, bStruct);
-	bonusParseMiddleCommands(fd, bStruct);
-	parseLastCommand(fd, bStruct);
-	bonusCloseAllFds(&fd, bStruct->commands_num);
-	mFree(bStruct->pathList);
+	if(parseFirstCommand(fd, bStruct) == -1 || bonusParseMiddleCommands(fd, bStruct) == -1 || \
+	        parseLastCommand(fd, bStruct) == -1)
+    {
+        perror(NAME);
+        bonusClean(fd, bStruct);
+    }
+    bonusClean(fd, bStruct);
 	waitChildren();
     system("leaks pipex");
 	return (0);

@@ -6,7 +6,6 @@
 
 int	main(int argc, char *argv[], char **envp)
 {
-	char		**pathList;
 	int			**fd;
 	t_bstruct	bStruct;
 	int			i;

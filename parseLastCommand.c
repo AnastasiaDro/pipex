@@ -11,7 +11,7 @@ int parseLastCommand(int **fd, t_bstruct *bStruct)
 
     pid = fork();
     if (pid < 0)
-        return (2);
+        return (pid);
     if (pid == 0)
     {
         command = bStruct->argv[bStruct->argc - 2];
@@ -29,7 +29,8 @@ int parseLastCommand(int **fd, t_bstruct *bStruct)
         close(fileFd);
         bonusCloseAllFds(&fd, bStruct->commands_num);
         execve(execArr[0], execArr, NULL);
-        free(fd);
+        perror(NAME);
+        exit(1);
     }
     return (1);
 }

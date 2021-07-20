@@ -1,23 +1,25 @@
 NAME	=	pipex
-SRC		=	main.c execArrSplit.c findCommand.c findPath.c getBinaryName.c getExecArr.c \
+MAIN	= 	main.c
+SRC		=	execArrSplit.c findCommand.c findPath.c getBinaryName.c getExecArr.c \
 			pipexSplit.c printError.c waitChildren.c parseFirstCommand.c parseLastCommand.c \
 			mFree.c closeAllFds.c
-BONUS	= 	_bonusMain.c _bonus_parseCmd.c _bonus_parseMiddleCommands.c \
+BONUS	= 	bonusMain.c bonusParseCmd.c bonusParseMiddleCommands.c \
 			get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
-			_bonusCheckHereDoc.c _bonusGetCommandsNum.c _bonusGetStdin.c _bonusGetTmpFile.c \
-			_bonusParseHereDoc.c _bonusParsePipesOnly.c _bonusParseLastRedirect.c
+			bonusCheckHereDoc.c bonusGetStdin.c bonusGetTmpFile.c bonusParseHereDoc.c\
+			bonusParsePipesOnly.c bonusParseLastRedirect.c checkFileFd.c initStruct.c\
+			bonusClean.c
 CFLAGS	= 	-Wall -Wextra -Werror
 LIBFT	= 	libft/libft.a
-
+OMAIN	= 	$(MAIN:.c=.o);
 OBJS	= 	$(SRC:.c=.o)
 BOBJS 	= 	$(BONUS:.c=.o)
 
 %.o: %.c
 			@$(CC) $(CFLAGS) -c -I./libft/ $< -o $(<:.c=.o)
 
-$(NAME):	$(OBJS)
+$(NAME):	$(OMAIN) $(OBJS)
 			@make bonus -C libft
-			@gcc $(OBJS) $(LIBFT) -o $(NAME)
+			@gcc $(OBJS) $(OMAIN) $(LIBFT) -o $(NAME)
 
 
 all:		$(NAME)
@@ -32,6 +34,7 @@ valg:		bonus
 clean:
 			@rm -f $(OBJS)
 			@rm -f $(BOBJS)
+			@rm -f $(OMAIN)
 			@make bfclean -C libft
 
 fclean:		clean

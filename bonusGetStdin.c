@@ -8,8 +8,6 @@ int	bonusGetStdin(int **fd, char *command, int tmpFd, t_bstruct *bStruct)
 	char	**execArr;
 
 	pid = fork();
-	if (pid < 0)
-		return (2);
 	if (pid == 0)
 	{
 		tmpFd = open("tmpFile", O_RDONLY, 0644);
@@ -22,6 +20,8 @@ int	bonusGetStdin(int **fd, char *command, int tmpFd, t_bstruct *bStruct)
 		bonusCloseAllFds(&fd, bStruct->commands_num);
 		mFree(bStruct->pathList);
 		execve(execArr[0], execArr, NULL);
+        perror(NAME);
+        exit(1);
 	}
-	return (0);
+	return (pid);
 }

@@ -28,6 +28,8 @@ int	parseFirstCommand(int **fd, t_bstruct *bStruct)
 		close(fileFd);
 		bonusClean(fd, bStruct);
 		execve(execArr[0], execArr, NULL);
+        perror(NAME);
+        exit(1);
 	}
 	return (pid);
 }

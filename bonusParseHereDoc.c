@@ -7,17 +7,17 @@ int	bonusParseHereDoc(int **fd, t_bstruct *bStruct)
 {
 	char	*command;
 	int		tmpFd;
-	int		commands_num;
 
-	commands_num = bStruct->commands_num;
 	command = bStruct->argv[3];
 	tmpFd = bonusGetTmpFile(bStruct->argv);
-	bonusGetStdin(fd, command, tmpFd, bStruct);
-	bonusParseMiddleCommands(fd, bStruct);
+    if(tmpFd == -1 || bonusGetStdin(fd, command, tmpFd, bStruct) == -1 || \
+        bonusParseMiddleCommands(fd, bStruct) == -1 || \
+	        bonusParseLastRedirect(fd, bStruct) == -1)
+    {
+        perror(NAME);
+    }
 	close(tmpFd);
-	bonusParseLastRedirect(fd, bStruct);
-	mFree(bStruct->pathList);
-	bonusCloseAllFds(&fd, commands_num);
+    bonusClean(fd, bStruct);
 	waitChildren();
 	unlink("tmpFile");
     system("leaks pipex");
