@@ -6,27 +6,27 @@
 
 int	main(int argc, char *argv[], char **envp)
 {
-	char	    **pathList;
-	int		    **fd;
-	t_bstruct   bStruct;
+	char		**pathList;
+	int			**fd;
+	t_bstruct	bStruct;
+	int			i;
 
 	if (argc < 5)
 	{
 		write(1, ARGNUM_ERR, ft_strlen(ARGNUM_ERR));
 		return (1);
 	}
-    initStruct(&bStruct, argc, argv, envp);
+	i = 0;
+	initStruct(&bStruct, argc, argv, envp);
 	fd = malloc(bStruct.commands_num * sizeof (int *));
-        int i;
-        i = 0;
-        while (i < bStruct.commands_num)
-        {
-           fd[i] = malloc(sizeof(int) * 2);
-           pipe(fd[i]);
-           i++;
-        }
+	while (i < bStruct.commands_num)
+	{
+		fd[i] = malloc(sizeof(int) * 2);
+		pipe(fd[i]);
+		i++;
+	}
 	if (bStruct.flag == HERE_DOC)
-        bonusParseHereDoc(fd, &bStruct);
+		bonusParseHereDoc(fd, &bStruct);
 	else
-        bonusParsePipesOnly(fd, &bStruct);
+		bonusParsePipesOnly(fd, &bStruct);
 }
