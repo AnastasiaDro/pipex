@@ -2,7 +2,7 @@
 #include <sys/fcntl.h>
 #include "pipex_bonus.h"
 
-int	parseLastCommand(int **fd, t_bstruct *bS)
+int	bonusLastCommand(int **fd, t_bstruct *bS)
 {
 	int		pid;
 	char	*command;

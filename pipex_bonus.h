@@ -21,7 +21,7 @@ int		bonusGetTmpFile(char **argv);
 int		bonusGetStdin(int **fd, char *command, int tmpFd, t_bstruct *bStruct);
 int		bonusParsePipesOnly(int **fd, t_bstruct *bStruct);
 int		bonusParseLastRedirect(int **fd, t_bstruct *bS);
-int		parseLastCommand(int **fd, t_bstruct *bS);
+int		bonusLastCommand(int **fd, t_bstruct *bS);
 int		parseFirstCommand(int **fd, t_bstruct *bStruct);
 void	bonusCloseAllFds(int ***fd, int commands_num);
 void	bonusClean(int **fd, t_bstruct *bStruct);

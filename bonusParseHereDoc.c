@@ -20,6 +20,5 @@ int	bonusParseHereDoc(int **fd, t_bstruct *bStruct)
 	bonusClean(fd, bStruct);
 	waitChildren();
 	unlink("tmpFile");
-	system("leaks pipex");
 	return (0);
 }
