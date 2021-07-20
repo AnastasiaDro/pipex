@@ -2,7 +2,7 @@
 
 int	bonusParsePipesOnly(int **fd, t_bstruct *bStruct)
 {
-	if(parseFirstCommand(fd, bStruct) == -1 || bonusParseMiddleCommands(fd, bStruct) == -1 || \
+	if (parseFirstCommand(fd, bStruct) == -1 || bonusParseMiddleCommands(fd, bStruct) == -1 || \
 			parseLastCommand(fd, bStruct) == -1)
 	{
 		perror(NAME);

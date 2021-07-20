@@ -23,8 +23,8 @@ int	bonusParseLastRedirect(int **fd, t_bstruct *bS)
 		close(fileFd);
 		bonusClean(fd, bS);
 		execve(execArr[0], execArr, NULL);
-        perror(NAME);
-        exit(1);
+		perror(NAME);
+		exit(1);
 	}
 	return (pid);
 }

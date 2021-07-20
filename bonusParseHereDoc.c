@@ -10,16 +10,16 @@ int	bonusParseHereDoc(int **fd, t_bstruct *bStruct)
 
 	command = bStruct->argv[3];
 	tmpFd = bonusGetTmpFile(bStruct->argv);
-    if(tmpFd == -1 || bonusGetStdin(fd, command, tmpFd, bStruct) == -1 || \
-        bonusParseMiddleCommands(fd, bStruct) == -1 || \
-	        bonusParseLastRedirect(fd, bStruct) == -1)
-    {
-        perror(NAME);
-    }
+	if (tmpFd == -1 || bonusGetStdin(fd, command, tmpFd, bStruct) == -1 || \
+		bonusParseMiddleCommands(fd, bStruct) == -1 || \
+			bonusParseLastRedirect(fd, bStruct) == -1)
+	{
+		perror(NAME);
+	}
 	close(tmpFd);
-    bonusClean(fd, bStruct);
+	bonusClean(fd, bStruct);
 	waitChildren();
 	unlink("tmpFile");
-    system("leaks pipex");
+	system("leaks pipex");
 	return (0);
 }
