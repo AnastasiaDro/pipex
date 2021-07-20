@@ -1,4 +1,3 @@
-
 #ifndef PIPEX_H
 # define PIPEX_H
 # define NAME "pipex: "
@@ -10,26 +9,14 @@
 # include "libft/libft.h"
 # include "libft/bonus.h"
 
-int mFree(char **pathlist);
-
-char    *findPath(char **envp);
-
-char    **pipexSplit(char const *s, char c);
-
-char    **getBinaryName(char **command);
-
-char    *findCommand(char **pathList, char *command);
-
-char    **execArrSplit(char const *s, char c, int *arrLen);
-
-char    **getExecArr(char *command, char **pathList);
-
-
-void printError(char *command, int flag);
-
-void    waitChildren(void);
-
-
-
+int		mFree(char **pathlist);
+char	*findPath(char **envp);
+char	**pipexSplit(char const *s, char c);
+char	**getBinaryName(char **command);
+char	*findCommand(char **pathList, char *command);
+char	**execArrSplit(char const *s, char c, int *arrLen);
+char	**getExecArr(char *command, char **pathList);
+void	printError(char *command, int flag);
+void	waitChildren(void);
 
 #endif
