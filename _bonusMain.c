@@ -17,7 +17,7 @@ int	main(int argc, char *argv[], char **envp)
 		return (1);
 	}
 	flag = _bonusCheckHereDoc(argv);
-        commands_num = argc - 2 - flag;
+	commands_num = argc - 3 - flag;
 	fd = malloc(commands_num * sizeof (int *));
         int i;
         i = 0;
