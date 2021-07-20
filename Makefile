@@ -75,7 +75,10 @@ valgb:		bonus
 			@echo "=====BONUS 6 text8====="
 			@echo "here_doc VALID args"
 			valgrind --tool=memcheck ./pipex here_doc L "cat -e" "cat -e" "cat -e" text8
-
+			@echo ""
+			@echo "=====BONUS 7 text9====="
+			@echo "here_doc INVALID first command"
+			valgrind --tool=memcheck ./pipex here_doc L "scat -e" "cat -e" "cat -e" text9
 
 
 clean:
