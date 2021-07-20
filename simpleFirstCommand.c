@@ -21,7 +21,7 @@ int	simpleFirstCommand(int *fd, char *argv[], char **pathList)
 		mFree(pathList);
 		execve(execArr[0], execArr, NULL);
 		perror(NAME);
-		exit(1);
+		exit(-1);
 	}
 	return (pid);
 }
