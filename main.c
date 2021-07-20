@@ -53,7 +53,10 @@ int main(int argc, char *argv[], char **envp)
 
     if (pid2 == 0 )
     {
-        fileFd = open(argv[4], O_WRONLY);
+        if(!access(argv[argc - 1], 0))
+            fileFd = open(argv[argc - 1], O_TRUNC | O_RDWR);
+        else
+            fileFd = open(argv[argc - 1], O_CREAT | O_RDWR, 0644);
         if (fileFd == -1)
         {
             printError( argv[4], 0);
