@@ -28,7 +28,10 @@ bonus:		$(OBJS) $(BOBJS)
 			@make bonus -C libft
 			@gcc $(OBJS) $(BOBJS) $(LIBFT) -o $(NAME)
 
-valg:		bonus
+valgs:
+			@gcc -g3 $(OBJS) $(LIBFT) -o $(NAME)
+
+valgb:		bonus
 			@gcc -g3 $(OBJS) $(BOBJS) $(LIBFT) -o $(BNAME)
 
 clean:
