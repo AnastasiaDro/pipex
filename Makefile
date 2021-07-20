@@ -49,6 +49,34 @@ valgs:
 
 valgb:		bonus
 			@gcc -g3 $(OBJS) $(BOBJS) $(LIBFT) -o $(BNAME)
+			@echo ""
+			@echo "=====BONUS 1 text3 ======"
+			@echo "check leaks valid args NO here_doc"
+			valgrind --tool=memcheck  ./pipex text1 "cat -e" "cat -e" "cat -e" text3
+			@echo ""
+			@echo "=====BONUS 2 text4 ======"
+			@echo "check leaks invalid file NO here_doc"
+			valgrind --tool=memcheck  ./pipex text000 "cat -e" "cat -e" "cat -e" text4
+			@echo ""
+			@echo "=====BONUS 3 text 5======"
+			@echo "check leaks invalid first arg NO here_doc"
+			valgrind --tool=memcheck  ./pipex text1 "scat -e" "cat -e" "cat -e" text5
+			@echo ""
+			@echo "=====BONUS 4 text6 ======"
+			@echo "check leaks invalid middle arg NO here_doc"
+			valgrind --tool=memcheck  ./pipex text1 "cat -e" "scat -e" "cat -e" text6
+			@echo ""
+			@echo "=====BONUS 5 text7====="
+			@echo "check leaks invalid last arg NO here_doc"
+			valgrind --tool=memcheck  ./pipex text1 "cat -e" "scat -e" "cat -e" text7
+			@echo ""
+			@echo "HEREDOC"
+			@echo ""
+			@echo "=====BONUS 6 text8====="
+			@echo "here_doc VALID args"
+			valgrind --tool=memcheck ./pipex here_doc L "cat -e" "cat -e" "cat -e" text8
+
+
 
 clean:
 			@rm -f $(OBJS)
