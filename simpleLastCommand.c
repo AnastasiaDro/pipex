@@ -11,7 +11,7 @@ int	simpleLastCommand(int *fd, char *argv[], char **pathList)
 	if (pid == 0)
 	{
 		command = argv[3];
-		if(!access(argv[4], 0))
+		if (!access(argv[4], 0))
 			fileFd = open(argv[4], O_TRUNC | O_RDWR);
 		else
 			fileFd = open(argv[4], O_CREAT | O_RDWR, 0644);

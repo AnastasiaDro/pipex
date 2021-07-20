@@ -26,6 +26,6 @@ int		parseFirstCommand(int **fd, t_bstruct *bStruct);
 void	bonusCloseAllFds(int ***fd, int commands_num);
 void	bonusClean(int **fd, t_bstruct *bStruct);
 void	checkFileFd(int fileFd, char *name, t_bstruct *bS, int **fd);
-void 	checkExecArr(char **execArr, int **fd, t_bstruct *bS);
+void	checkExecArr(char **execArr, int **fd, t_bstruct *bS);
 
 #endif
