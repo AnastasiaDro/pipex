@@ -3,7 +3,7 @@
 //
 #include <sys/fcntl.h>
 #include "pipex.h"
-#include "_bonus.h"
+#include "bonus.h"
 
 int _bonusGetStdin(int **fd, char *command, char **pathList, int tmpFd, int commands_num)
 {

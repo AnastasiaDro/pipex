@@ -5,7 +5,7 @@ SRC		=	execArrSplit.c findCommand.c findPath.c getBinaryName.c getExecArr.c \
 			mFree.c closeAllFds.c
 BONUS	= 	_bonusMain.c _bonus_parseCmd.c _bonus_parseMiddleCommands.c \
 			get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
-			_bonusCheckHereDoc.c _bonusGetCommandsNum.c _bonusGetStdin.c _bonusGetTmpFile.c \
+			_bonusCheckHereDoc.c _bonusGetStdin.c _bonusGetTmpFile.c \
 			_bonusParseHereDoc.c _bonusParsePipesOnly.c _bonusParseLastRedirect.c
 CFLAGS	= 	-Wall -Wextra -Werror
 LIBFT	= 	libft/libft.a
@@ -38,7 +38,7 @@ clean:
 
 fclean:		clean
 			@rm -f $(NAME)
-			@make bfclean -C libft
+			@make bclean -C libft
 
 re:			fclean all
 

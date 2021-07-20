@@ -2,13 +2,15 @@
 #include <sys/fcntl.h>
 #include "pipex.h"
 
-int parseLastCommand(char *argv[], char **pathList, int **fd, int commands_num, int argc)
+int parseLastCommand(char *argv[], char **pathList, int **fd, int commands_num)
 {
     int pid;
     char *command;
     char **execArr;
     int fileFd;
+    int argc;
 
+    argc = ft_doubleArrlen((void **)argv);
     pid = fork();
     if (pid < 0)
         return (2);

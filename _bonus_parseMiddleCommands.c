@@ -1,5 +1,5 @@
 #include <unistd.h>
-#include "_bonus.h"
+#include "bonus.h"
 
 int _bonus_parseMiddleCommands(int commands_num, int **fd, char *argv[], char **pathList, int flag)
 {

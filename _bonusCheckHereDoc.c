@@ -1,5 +1,5 @@
 
-#include "_bonus.h"
+#include "bonus.h"
 
 int _bonusCheckHereDoc(char *argv[])
 {

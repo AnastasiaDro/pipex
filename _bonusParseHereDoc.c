@@ -1,9 +1,8 @@
 #include "pipex.h"
-#include "_bonus.h"
-#include "libft/libft.h"
+#include "bonus.h"
 # include "get_next_line/get_next_line.h"
 
-int _bonusParseHereDoc(char *argv[], char **pathList, int **fd, int commands_num, int argc)
+int _bonusParseHereDoc(char *argv[], char **pathList, int **fd, int commands_num)
 {
     char *command;
     int tmpFd;
@@ -13,7 +12,7 @@ int _bonusParseHereDoc(char *argv[], char **pathList, int **fd, int commands_num
     _bonusGetStdin(fd, command, pathList, tmpFd, commands_num);
     _bonus_parseMiddleCommands(commands_num, fd, argv, pathList, HERE_DOC);
     close(tmpFd);
-    _bonusParseLastRedirect(argv, pathList, fd, commands_num, argc);
+    _bonusParseLastRedirect(argv, pathList, fd, commands_num);
     mFree(pathList);
     closeAllFds(&fd, commands_num);
     waitChildren();

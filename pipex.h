@@ -30,7 +30,7 @@ void    waitChildren(void);
 
 int parseFirstCommand(char *argv[], char **pathList, int **fd, int commands_num);
 
-int parseLastCommand(char *argv[], char **pathList, int **fd, int commands_num, int argc);
+int parseLastCommand(char *argv[], char **pathList, int **fd, int commands_num);
 
 void	closeAllFds(int ***fd, int commands_num);
 

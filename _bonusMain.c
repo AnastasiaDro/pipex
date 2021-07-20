@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "pipex.h"
 #include "libft/libft.h"
-#include "_bonus.h"
+#include "bonus.h"
 
 int	main(int argc, char *argv[], char **envp)
 {
@@ -29,7 +29,7 @@ int	main(int argc, char *argv[], char **envp)
         }
 	pathList = pipexSplit(findPath(envp), ':');
 	if (flag == HERE_DOC)
-		_bonusParseHereDoc(argv, pathList, fd, commands_num, argc);
+		_bonusParseHereDoc(argv, pathList, fd, commands_num);
 	else
-		_bonusParsePipesOnly(argv, pathList, fd, commands_num, argc);
+		_bonusParsePipesOnly(argv, pathList, fd, commands_num);
 }

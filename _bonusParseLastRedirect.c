@@ -2,15 +2,17 @@
 // Created by Cesar Erebus on 7/17/21.
 //
 #include "pipex.h"
-#include "_bonus.h"
+#include "bonus.h"
 
-int _bonusParseLastRedirect(char *argv[], char **pathList, int **fd, int commands_num, int argc)
+int _bonusParseLastRedirect(char *argv[], char **pathList, int **fd, int commands_num)
 {
     int pid;
     char *command;
     int fileFd;
     char **execArr;
+    int argc;
 
+    argc = ft_doubleArrlen((void **)argv);
     pid = fork();
     if (pid < 0)
         return (2);

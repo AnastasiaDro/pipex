@@ -47,7 +47,7 @@ re:			fclean all
 bonus:		$(OBJS) $(BOBJS)
 			@ar rc libft.a $(OBJS) $(BOBJS)
 
-bfclean:
-			@@rm -f $(NAME)
+bclean:
+			@rm -f $(OBJS) $(BOBJS)
 			
-.PHONY:		all clean fclean re bonus bclean
+.PHONY:		all clean fclean re bonus bfclean
