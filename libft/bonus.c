@@ -1,9 +1,4 @@
-//
-// Created by Cesar Erebus on 7/4/21.
-//
-#include <printf.h>
 #include "bonus.h"
-#include "stdlib.h"
 
 int ft_strcmp(const char *s1, const char *s2)
 {

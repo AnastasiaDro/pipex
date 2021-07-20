@@ -7,7 +7,8 @@
 # include <errno.h>
 # include "unistd.h"
 # include "libc.h"
-#include "libft/libft.h"
+# include "libft/libft.h"
+# include "libft/bonus.h"
 
 int mFree(char **pathlist);
 

@@ -1,16 +1,16 @@
 NAME	=	pipex
 MAIN	= 	main.c
 SRC		=	execArrSplit.c findCommand.c findPath.c getBinaryName.c getExecArr.c \
-			pipexSplit.c printError.c waitChildren.c parseFirstCommand.c parseLastCommand.c \
+			pipexSplit.c printError.c waitChildren.c \
 			mFree.c closeAllFds.c
-BONUS	= 	bonusMain.c bonusParseCmd.c bonusParseMiddleCommands.c \
-			get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
+BONUS	= 	bonusMain.c bonusParseCmd.c parseFirstCommand.c parseLastCommand.c bonusParseMiddleCommands.c \
+			get_next_line/get_next_line.c get_next_line/get_next_line_utils.c get_next_line/gnl_wrap_utils.c\
 			bonusCheckHereDoc.c bonusGetStdin.c bonusGetTmpFile.c bonusParseHereDoc.c\
 			bonusParsePipesOnly.c bonusParseLastRedirect.c checkFileFd.c initStruct.c\
 			bonusClean.c
 CFLAGS	= 	-Wall -Wextra -Werror
 LIBFT	= 	libft/libft.a
-OMAIN	= 	$(MAIN:.c=.o);
+OMAIN	= 	$(MAIN:.c=.o)
 OBJS	= 	$(SRC:.c=.o)
 BOBJS 	= 	$(BONUS:.c=.o)
 
