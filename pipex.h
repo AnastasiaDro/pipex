@@ -32,5 +32,6 @@ int parseFirstCommand(char *argv[], char **pathList, int **fd, int commands_num)
 
 int parseLastCommand(char *argv[], char **pathList, int **fd, int commands_num, int argc);
 
+void	closeAllFds(int ***fd, int commands_num);
 
 #endif

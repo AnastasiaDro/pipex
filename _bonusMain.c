@@ -25,11 +25,11 @@ int	main(int argc, char *argv[], char **envp)
         {
            fd[i] = malloc(sizeof(int) * 2);
            pipe(fd[i]);
+           i++;
         }
 	pathList = pipexSplit(findPath(envp), ':');
 	if (flag == HERE_DOC)
 		_bonusParseHereDoc(argv, pathList, fd, commands_num, argc);
 	else
 		_bonusParsePipesOnly(argv, pathList, fd, commands_num, argc);
-        
 }

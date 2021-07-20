@@ -7,7 +7,7 @@
 #define HERE_DOC 1
 #include "pipex.h"
 
-void _bonus_closeAllFds(int ***fd, int commands_num);
+void closeAllFds(int ***fd, int commands_num);
 int _bonus_parseCmd(int ***fd, int current_index, int commands_num, char *argv[], char **pathList, int flag);
 int _bonus_parseMiddleCommands(int commands_num, int **fd, char *argv[], char **pathList, int flag);
 int _bonusParseHereDoc(char *argv[], char **pathList, int **fd, int commands_num, int argc);

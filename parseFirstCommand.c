@@ -5,7 +5,6 @@
 #include <unistd.h>
 #include <sys/fcntl.h>
 #include "pipex.h"
-#include "_bonus.h"
 #include <string.h>
 
 int parseFirstCommand(char *argv[], char **pathList, int **fd, int commands_num)
@@ -26,20 +25,20 @@ int parseFirstCommand(char *argv[], char **pathList, int **fd, int commands_num)
         {
             printError(argv[1], 0);
             mFree(pathList);
-            _bonus_closeAllFds(&fd, commands_num);
+            closeAllFds(&fd, commands_num);
             exit(0);
         }
         execArr = getExecArr(command, pathList);
         if (!execArr)
         {
-            _bonus_closeAllFds(&fd, commands_num);
+            closeAllFds(&fd, commands_num);
             mFree(pathList);
             exit(0);
         }
         dup2(fd[1][1], STDOUT_FILENO);
         dup2(fileFd, STDIN_FILENO);
         close(fileFd);
-        _bonus_closeAllFds(&fd, commands_num);
+        closeAllFds(&fd, commands_num);
         mFree(pathList);
         execve(execArr[0], execArr, NULL);
     }

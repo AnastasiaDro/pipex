@@ -72,4 +72,5 @@ int main(int argc, char *argv[], char **envp)
     close(pfd[1]);
     waitpid(pid1, NULL, 0);
     waitpid(pid2, NULL, 0);
+    system("leaks pipex");
 }

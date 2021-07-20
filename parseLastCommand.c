@@ -1,7 +1,6 @@
 #include <unistd.h>
 #include <sys/fcntl.h>
 #include "pipex.h"
-#include "_bonus.h"
 
 int parseLastCommand(char *argv[], char **pathList, int **fd, int commands_num, int argc)
 {
@@ -28,7 +27,7 @@ int parseLastCommand(char *argv[], char **pathList, int **fd, int commands_num, 
         dup2(fd[commands_num - 1][0], STDIN_FILENO);
         dup2(fileFd, STDOUT_FILENO);
         close(fileFd);
-        _bonus_closeAllFds(&fd, commands_num);
+        closeAllFds(&fd, commands_num);
         execve(execArr[0], execArr, NULL);
         free(fd);
     }

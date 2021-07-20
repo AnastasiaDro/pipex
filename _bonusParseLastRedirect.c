@@ -29,7 +29,7 @@ int _bonusParseLastRedirect(char *argv[], char **pathList, int **fd, int command
         dup2(fd[commands_num - 1][0], STDIN_FILENO);
         dup2(fileFd, STDOUT_FILENO);
         close(fileFd);
-        _bonus_closeAllFds(&fd, commands_num);
+        closeAllFds(&fd, commands_num);
         mFree(pathList);
         execve(execArr[0], execArr, NULL);
         return (1);

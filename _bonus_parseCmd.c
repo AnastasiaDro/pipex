@@ -19,12 +19,12 @@ int _bonus_parseCmd(int ***fd, int current_index, int commands_num, char *argv[]
     tmp = *fd;
     if (execArr == NULL)
     {
-        _bonus_closeAllFds(fd, commands_num);
+        closeAllFds(fd, commands_num);
          exit(0);
     }
     dup2(tmp[current_index][0], STDIN_FILENO);
     dup2(tmp[current_index + 1][1], STDOUT_FILENO);
-    _bonus_closeAllFds(fd, commands_num);
+    closeAllFds(fd, commands_num);
     execve(execArr[0], execArr, NULL);
     return (0);
 }
