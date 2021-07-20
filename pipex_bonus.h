@@ -28,4 +28,5 @@ int     bonusParseLastRedirect(int **fd, t_bstruct *bStruct);
 int     parseLastCommand(int **fd, t_bstruct *bStruct);
 int     parseFirstCommand(int **fd, t_bstruct *bStruct);
 void	bonusCloseAllFds(int ***fd, int commands_num);
+void    bonusClean(int **fd, t_bstruct *bStruct);
 #endif

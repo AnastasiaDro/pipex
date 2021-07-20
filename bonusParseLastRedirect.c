@@ -1,6 +1,3 @@
-//
-// Created by Cesar Erebus on 7/17/21.
-//
 #include "pipex.h"
 #include "pipex_bonus.h"
 
@@ -25,6 +22,7 @@ int bonusParseLastRedirect(int **fd, t_bstruct *bStruct)
         if (fileFd == -1)
         {
             printError(bStruct->argv[bStruct->argc - 1], 0);
+            bonusClean(fd, bStruct);
         }
         dup2(fd[bStruct->commands_num - 1][0], STDIN_FILENO);
         dup2(fileFd, STDOUT_FILENO);

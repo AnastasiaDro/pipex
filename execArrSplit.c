@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: cerebus <cerebus@student.21-school.ru>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/15 19:34:13 by cerebus           #+#    #+#             */
-/*   Updated: 2020/11/26 12:25:20 by cerebus          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <stdlib.h>
 #include "libft/libft.h"
 
@@ -70,7 +58,7 @@ static char	**ft_fill_res(char **res, char const *s, char c, int words_num)
 	return (res);
 }
 
-char		**execArrSplit(char const *s, char c, int *arrLen)
+char	**execArrSplit(char const *s, char c, int *arrLen)
 {
 	int		words_num;
 	char	**res;
@@ -78,9 +66,8 @@ char		**execArrSplit(char const *s, char c, int *arrLen)
 	if (!s)
 		return (NULL);
 	words_num = ft_count_words(s, c);
-
 	res = (char **)malloc((words_num + 2) * sizeof(char *));
 	res[words_num] = NULL;
-    *arrLen = words_num;
+	*arrLen = words_num;
 	return (ft_fill_res(res, s, c, words_num));
 }
