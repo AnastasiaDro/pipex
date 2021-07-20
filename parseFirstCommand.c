@@ -16,20 +16,15 @@ int	parseFirstCommand(int **fd, t_bstruct *bStruct)
 		command = (bStruct->argv)[2];
 		fileFd = open((bStruct->argv)[1], O_RDWR);
 		execArr = getExecArr(command, bStruct->pathList);
-		if (fileFd == -1)
-			printError((bStruct->argv)[1], 0);
-		if (fileFd == -1 || !execArr)
-		{
-			bonusClean(fd, bStruct);
-			exit(0);
-		}
+		checkFileFd(fileFd, (bStruct->argv)[1], bStruct, fd);
+		checkExecArr(execArr, fd, bStruct);
 		dup2(fd[1][1], STDOUT_FILENO);
 		dup2(fileFd, STDIN_FILENO);
 		close(fileFd);
 		bonusClean(fd, bStruct);
 		execve(execArr[0], execArr, NULL);
-        perror(NAME);
-        exit(1);
+		perror(NAME);
+		exit(1);
 	}
 	return (pid);
 }

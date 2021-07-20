@@ -20,8 +20,8 @@ int	bonusGetStdin(int **fd, char *command, int tmpFd, t_bstruct *bStruct)
 		bonusCloseAllFds(&fd, bStruct->commands_num);
 		mFree(bStruct->pathList);
 		execve(execArr[0], execArr, NULL);
-        perror(NAME);
-        exit(1);
+		perror(NAME);
+		exit(1);
 	}
 	return (pid);
 }
