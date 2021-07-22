@@ -12,6 +12,7 @@ void	printError(char *command, int flag)
 	{
 		prefix = ft_strjoin(NAME, command);
 		perror(prefix);
+		free(prefix);
 		return ;
 	}
 	if (flag == 1)

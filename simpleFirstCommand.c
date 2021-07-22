@@ -12,8 +12,8 @@ int	simpleFirstCommand(int *fd, char *argv[], char **pathList)
 	{
 		command = argv[2];
 		fileFd = open(argv[1], O_RDWR);
-		execArr = getExecArr(command, pathList);
 		simpleCheckFileFd(fileFd, argv, pathList);
+		execArr = getExecArr(command, pathList);
 		simpleCheckExecArr(execArr, pathList);
 		dup2(fd[1], STDOUT_FILENO);
 		dup2(fileFd, STDIN_FILENO);

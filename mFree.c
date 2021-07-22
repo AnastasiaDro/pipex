@@ -8,8 +8,10 @@ int	mFree(char **pathlist)
 	while (pathlist[i])
 	{
 		free(pathlist[i]);
+		pathlist[i] = NULL;
 		i++;
 	}
 	free(pathlist);
+	pathlist = NULL;
 	return (0);
 }
